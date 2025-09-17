@@ -28,6 +28,10 @@ public class Sesion {
         return id;
     }
 
+    public void setIdSesion(int id) {
+        this.id = id;
+    }
+
     public String getEstado() {
         return estado;
     }

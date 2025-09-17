@@ -13,14 +13,14 @@ import java.util.Date;
  */
 public class Alumno {
     private int id;
-    private String nombre, nombrePaterno, nombreMaterno, 
+    private String nombre, apellidoPaterno, apellidoMaterno, 
             telefono, escuela_Procedencia, grado_Escolar;
     private Date fecha_nacimiento;
 
     public Alumno(String nombre, String nombrePaterno, String nombreMaterno, String telefono, String escuela_Procedencia, String grado_Escolar, Date fecha_nacimiento) {
         this.nombre = nombre;
-        this.nombrePaterno = nombrePaterno;
-        this.nombreMaterno = nombreMaterno;
+        this.apellidoPaterno = nombrePaterno;
+        this.apellidoMaterno = nombreMaterno;
         this.telefono = telefono;
         this.escuela_Procedencia = escuela_Procedencia;
         this.grado_Escolar = grado_Escolar;
@@ -30,6 +30,11 @@ public class Alumno {
     public Alumno() {
     }
 
+    public void setIdAlumno(int id) {
+        this.id = id;
+    }
+
+    
     public int getId() {
         return id;
     }
@@ -42,20 +47,20 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public String getNombrePaterno() {
-        return nombrePaterno;
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
     }
 
-    public void setNombrePaterno(String nombrePaterno) {
-        this.nombrePaterno = nombrePaterno;
+    public void setApellidoPaterno(String nombrePaterno) {
+        this.apellidoPaterno = nombrePaterno;
     }
 
-    public String getNombreMaterno() {
-        return nombreMaterno;
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
     }
 
-    public void setNombreMaterno(String nombreMaterno) {
-        this.nombreMaterno = nombreMaterno;
+    public void setApellidoMaterno(String nombreMaterno) {
+        this.apellidoMaterno = nombreMaterno;
     }
 
     public String getTelefono() {
@@ -90,9 +95,15 @@ public class Alumno {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", nombrePaterno=" + nombrePaterno + ", nombreMaterno=" + nombreMaterno + ", telefono=" + telefono + ", escuela_Procedencia=" + escuela_Procedencia + ", grado_Escolar=" + grado_Escolar + ", fecha_nacimiento=" + fecha_nacimiento + '}';
+//    }
+
+
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", nombrePaterno=" + nombrePaterno + ", nombreMaterno=" + nombreMaterno + ", telefono=" + telefono + ", escuela_Procedencia=" + escuela_Procedencia + ", grado_Escolar=" + grado_Escolar + ", fecha_nacimiento=" + fecha_nacimiento + '}';
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", telefono=" + telefono + ", escuela_Procedencia=" + escuela_Procedencia + ", grado_Escolar=" + grado_Escolar + ", fecha_nacimiento=" + fecha_nacimiento + '}';
     }
     
 }

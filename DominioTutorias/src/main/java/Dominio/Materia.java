@@ -19,6 +19,10 @@ public class Materia {
         this.descripcion = descripcion;
     }
 
+    public void setIdMateria(int id) {
+        this.id = id;
+    }
+
     public Materia() {
     }
 
@@ -54,6 +58,6 @@ public class Materia {
     public String toString() {
         return "Materia{" + "id=" + id + ", nombre=" + nombre + ", nivel_Educativo=" + nivel_Educativo + ", descripcion=" + descripcion + '}';
     }
-    
+
     
 }

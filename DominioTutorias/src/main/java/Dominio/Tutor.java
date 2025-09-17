@@ -29,6 +29,10 @@ public class Tutor {
         return id;
     }
 
+    public void setIdTutor(int id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return nombre;
     }
