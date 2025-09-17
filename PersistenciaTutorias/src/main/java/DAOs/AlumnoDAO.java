@@ -99,7 +99,7 @@ public class AlumnoDAO implements IAlumnoDAO {
 
     @Override
     public boolean actualizar(Alumno alumno) {
-        String sql = "UPDATE Alumno SET nombre = ?, telefono = ?, fchIngreso = ? WHERE idActivista = ?";
+        String sql = "UPDATE Alumno SET nombre = ?, apellidoPaterno = ?, apellidoMaterno = ?, telefono = ?, escuela_Procedencia = ?, grado_Escolar = ? WHERE idAlumno = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
