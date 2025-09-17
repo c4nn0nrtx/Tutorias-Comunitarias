@@ -14,8 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
+ /*
  * @author $Luis Carlos Manjarrez Gonzalez
  */
 public class TutorDAO implements ITutorDAO {
@@ -45,9 +44,9 @@ public class TutorDAO implements ITutorDAO {
         String sql = "SELECT * FROM Tutor WHERE idTutor = ?";
         Tutor tutor = null;
 
-        try (
-                Connection con = ConexionDB.getConnection(); 
-                PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setInt(1, idTutor);
             ResultSet rs = ps.executeQuery();
 
@@ -64,7 +63,7 @@ public class TutorDAO implements ITutorDAO {
             }
         } catch (SQLException e) {
             System.err.println("Error al obtener tutor por ID: " + e.getMessage());
-        }
+            }
         return tutor;
     }
 
@@ -99,8 +98,8 @@ public class TutorDAO implements ITutorDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, tutor.getNombre());
-            ps.setString(3, tutor.getEmail());
-            ps.setString(2, tutor.getEspecialidad());
+            ps.setString(2, tutor.getEmail());
+            ps.setString(3, tutor.getEspecialidad());
             ps.setString(4, tutor.getTelefono());
 
             return ps.executeUpdate() > 0;
@@ -124,7 +123,6 @@ public class TutorDAO implements ITutorDAO {
             System.err.println("Error al eliminar tutor: " + e.getMessage());
             return false;
         }
-        
     }
-
-}
+    
+}   
