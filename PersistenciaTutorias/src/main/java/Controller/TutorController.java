@@ -50,7 +50,7 @@ public class TutorController {
     }
 
     //Obtener por id
-    public Tutor obtenerPorId(int idTutor){
+    public Tutor obtenerPorId(long idTutor){
         if (idTutor <= 0) {
             System.err.println("ID invalido");
             return null;
@@ -64,7 +64,7 @@ public class TutorController {
     }
     
     //actualizar
-    public boolean actualizarTutor(int idTutor, String nombre, String email, String especialidad, String telefono){
+    public boolean actualizarTutor(Long idTutor, String nombre, String email, String especialidad, String telefono){
         if (idTutor <= 0) {
             System.out.println("ID invalido");
             return false;
@@ -96,7 +96,7 @@ public class TutorController {
     } 
     
     //eliminar
-    public boolean eliminarTutor(int idTutor){
+    public boolean eliminarTutor(long idTutor){
         if (idTutor <= 0) {
             System.err.println("ID invalido");
             return false;

@@ -21,7 +21,7 @@ public class TutorDAO implements ITutorDAO {
 
     @Override
     public boolean insertar(Tutor tutor) {
-        String sql = "INSERT INTO Tutor(nombre, email, especialidad, telefono) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Tutor(nombre, email, especialidad, telefono,inicio, fin) VALUES (?, ?, ?, ?, ?, ?)";
         try (
             Connection con = ConexionDB.getConnection(); 
             PreparedStatement ps = con.prepareStatement(sql)) {
@@ -29,6 +29,8 @@ public class TutorDAO implements ITutorDAO {
             ps.setString(3, tutor.getEmail());
             ps.setString(2, tutor.getEspecialidad());
             ps.setString(4, tutor.getTelefono());
+            ps.setDate(5, tutor.getInicio());
+            ps.setDate(6, tutor.getFin());
 
             return ps.executeUpdate() > 0;
 
@@ -40,19 +42,19 @@ public class TutorDAO implements ITutorDAO {
     }
 
     @Override
-    public Tutor obtenerPorId(int idTutor) {
+    public Tutor obtenerPorId(Long idTutor) {
         String sql = "SELECT * FROM Tutor WHERE idTutor = ?";
         Tutor tutor = null;
 
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setInt(1, idTutor);
+            ps.setLong(1, idTutor);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 tutor = new Tutor();
-                tutor.setIdTutor(rs.getInt("idTutor"));
+                tutor.setIdTutor(rs.getLong("idTutor"));
                 tutor.setNombre(rs.getString("nombre"));
                 tutor.setEmail(rs.getString("email"));
                 tutor.setEspecialidad(rs.getString("especialidad"));
@@ -76,7 +78,7 @@ public class TutorDAO implements ITutorDAO {
 
             while (rs.next()) {
                 Tutor tutor = new Tutor();
-                tutor.setIdTutor(rs.getInt("idTutor"));
+                tutor.setIdTutor(rs.getLong("idTutor"));
                 tutor.setNombre(rs.getString("nombre"));
                 tutor.setEmail(rs.getString("email"));
                 tutor.setEspecialidad(rs.getString("especialidad"));
@@ -111,12 +113,12 @@ public class TutorDAO implements ITutorDAO {
     }
 
     @Override
-    public boolean eliminar(int idTutor) {
+    public boolean eliminar(Long idTutor) {
         String sql = "DELETE FROM Tutor WHERE idTutor = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setInt(1, idTutor);
+            ps.setLong(1, idTutor);
             return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {

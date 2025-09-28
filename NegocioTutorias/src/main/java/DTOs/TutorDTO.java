@@ -5,31 +5,36 @@
 
 package DTOs;
 
+import java.sql.Date;
+
 /**
  *
  * @author $Luis Carlos Manjarrez Gonzalez
  */
 public class TutorDTO {
-    private int id;
+    private Long id;
     private String nombre, email, especialidad, telefono;
-//    private string disponibilidad debera ser Date o una fecha especifica?
+    private Date inicio, fin;
 
-    public TutorDTO(int id, String nombre, String email, String especialidad, String telefono) {
+    public TutorDTO(Long id, String nombre, String email, String especialidad, String telefono, Date inicio, Date fin) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.especialidad = especialidad;
-        this.telefono = telefono;
+        this.telefono = telefono; 
+        this.inicio = inicio;
+        this.fin = fin;
+        
     }
 
     public TutorDTO() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,8 +70,26 @@ public class TutorDTO {
         this.telefono = telefono;
     }
 
+    public Date getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    public Date getFin() {
+        return fin;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
+    }
+
     @Override
     public String toString() {
-        return "Tutor{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", especialidad=" + especialidad + ", telefono=" + telefono + '}';
+        return "TutorDTO{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", especialidad=" + especialidad + ", telefono=" + telefono + ", inicio=" + inicio + ", fin=" + fin + '}';
     }
+
+    
 }

@@ -6,15 +6,16 @@ package Interfaces;
 
 import DTOs.TutorDTO;
 import Exception.NegocioException;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author HP
  */
 public interface ITutorBO {
-    public TutorDTO registrarAlumno(TutorDTO tutor) throws NegocioException;
-    public List<TutorDTO> consultarTodos() throws NegocioException;
-    public TutorDTO modificarAlumno(TutorDTO alumno) throws NegocioException;
-    public TutorDTO eliminarAlumno(int id) throws NegocioException;
+    public TutorDTO registrarTutor(TutorDTO tutor) throws NegocioException;
+    public ArrayList<TutorDTO> consultarTodos() throws NegocioException;
+    public TutorDTO modificarTutor(TutorDTO tutor) throws NegocioException;
+    public TutorDTO eliminarTutor(long id) throws NegocioException;
+    public TutorDTO buscarPorId(long id) throws NegocioException;
 }

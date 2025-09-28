@@ -13,8 +13,8 @@ import java.util.List;
  */
 public interface ITutorDAO {
     boolean insertar(Tutor tutor);
-    Tutor obtenerPorId(int idtutor);
+    Tutor obtenerPorId(Long idtutor);
     List<Tutor> obtenerTodos();
     boolean actualizar(Tutor tutor);
-    boolean eliminar(int idtutor);
+    boolean eliminar(Long idtutor);
 }
