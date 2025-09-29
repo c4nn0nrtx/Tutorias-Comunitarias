@@ -4,17 +4,28 @@
  */
 package views;
 
+import DTOs.TutorDTO;
+import Exception.NegocioException;
+import com.mycompany.presentaciontutorias.Aplicacion;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HP
  */
 public class MenuTutores extends javax.swing.JPanel {
-
+    private Aplicacion control;
     /**
      * Creates new form MenuTutores
      */
-    public MenuTutores() {
+    public MenuTutores(Aplicacion control) {
+        this.control = control;
         initComponents();
+        valoresDefault();
+        
     }
 
     /**
@@ -27,7 +38,7 @@ public class MenuTutores extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaTutores = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         BtnActualizar = new javax.swing.JButton();
         BtnEliminar1 = new javax.swing.JButton();
@@ -35,7 +46,7 @@ public class MenuTutores extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaTutores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -46,7 +57,7 @@ public class MenuTutores extends javax.swing.JPanel {
                 "Id", "Nombre", "Especialidad", "E-mail", "Telefono", "Disponibilidad"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaTutores);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 830, -1));
 
@@ -80,6 +91,7 @@ public class MenuTutores extends javax.swing.JPanel {
 
     private void BtnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarMouseClicked
         // TODO add your handling code here:
+        control.mostrarAgregarTutor();
     }//GEN-LAST:event_BtnAgregarMouseClicked
 
 
@@ -89,6 +101,30 @@ public class MenuTutores extends javax.swing.JPanel {
     private javax.swing.JButton BtnEliminar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaTutores;
     // End of variables declaration//GEN-END:variables
+
+    public void CargarTabla(){
+        DefaultTableModel model = (DefaultTableModel) tablaTutores.getModel();
+        model.setRowCount(0);
+
+        ArrayList<TutorDTO> tutores;
+            tutores = control.consultarTodos();
+            for (TutorDTO tutor : tutores) {
+            Object[] fila = new Object[]{
+                tutor.getId(),
+                tutor.getNombre(),
+                tutor.getEspecialidad(),
+                tutor.getEmail(),
+                tutor.getTelefono()
+                };
+            model.addRow(fila);
+        
+        }
+    }
+    
+    public void valoresDefault(){
+        CargarTabla();
+    }
+    
 }

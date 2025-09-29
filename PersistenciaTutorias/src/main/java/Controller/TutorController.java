@@ -78,11 +78,11 @@ public class TutorController {
             return false;
         }
         if (especialidad == null || especialidad.trim().isEmpty()) {
-            System.err.println("La especialidad materno del tutor no puede estar vacio");
+            System.err.println("La especialidad del tutor no puede estar vacio");
             return false;
         }
-        if (telefono == null) {
-            telefono = "";
+        if (telefono == null || telefono.equals("")) {
+            return false;
         }
         
         Tutor tutor = new Tutor();
@@ -92,7 +92,7 @@ public class TutorController {
         tutor.setEspecialidad(especialidad.trim());
         tutor.setTelefono(telefono.trim());
 
-        return tutorDAO.insertar(tutor);
+        return tutorDAO.actualizar(tutor);
     } 
     
     //eliminar
