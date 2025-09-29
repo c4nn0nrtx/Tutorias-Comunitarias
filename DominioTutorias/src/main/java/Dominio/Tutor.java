@@ -14,10 +14,10 @@ import java.sql.Date;
 public class Tutor {
     private Long id;
     private String nombre, email, especialidad, telefono;
-    private Date inicio, fin;
-//    private string disponibilidad debera ser Date o una fecha especifica?
+    private int inicio, fin;
+    private String disponibilidad;
 
-    public Tutor(Long id, String nombre, String email, String especialidad, String telefono,Date inicio, Date fin) {
+    public Tutor(Long id, String nombre, String email, String especialidad, String telefono,int inicio, int fin, String disponibilidad) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -25,6 +25,7 @@ public class Tutor {
         this.telefono = telefono;
         this.inicio = inicio;
         this.fin = fin;
+        this.disponibilidad = disponibilidad;
     }
 
     public Tutor() {
@@ -70,28 +71,33 @@ public class Tutor {
         this.telefono = telefono;
     }
 
-    public Date getInicio() {
+    public int getInicio() {
         return inicio;
     }
 
-    public void setInicio(Date inicio) {
+    public void setInicio(int inicio) {
         this.inicio = inicio;
     }
 
-    public Date getFin() {
+    public int getFin() {
         return fin;
     }
 
-    public void setFin(Date fin) {
+    public void setFin(int fin) {
         this.fin = fin;
+    }
+
+    public String getDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public void setDisponibilidad(String disponibilidad) {
+        this.disponibilidad = disponibilidad;
     }
 
     @Override
     public String toString() {
-        return "Tutor{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", especialidad=" + especialidad + ", telefono=" + telefono + ", inicio=" + inicio + ", fin=" + fin + '}';
+        return "Tutor{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", especialidad=" + especialidad + ", telefono=" + telefono + ", inicio=" + inicio + ", fin=" + fin + ", disponibilidad=" + disponibilidad + '}';
     }
-
-    
-    
 
 }

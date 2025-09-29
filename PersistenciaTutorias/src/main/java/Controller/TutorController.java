@@ -7,6 +7,7 @@ package Controller;
 import DAOs.TutorDAO;
 import Dominio.Tutor;
 import Interfaces.ITutorDAO;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class TutorController {
     //VALIDACIONEs
     
     //Inserrt
-    public boolean agregarTutor(String nombre, String email, String especialidad, String telefono){
+    public boolean agregarTutor(String nombre, String email, String especialidad, String telefono, Date inicio, Date fin){
         if (nombre == null || nombre.trim().isEmpty()) {
             System.err.println("El nombre del tutor no puede estar vacio");
             return false;
@@ -37,7 +38,7 @@ public class TutorController {
             return false;
         }
         if (telefono == null) {
-            telefono = "";
+            return false;
         }
 
         Tutor tutor = new Tutor();
@@ -45,6 +46,8 @@ public class TutorController {
         tutor.setEmail(email.trim());
         tutor.setEspecialidad(especialidad.trim());
         tutor.setTelefono(telefono.trim());
+        tutor.setInicio(inicio.getHours());
+        tutor.setFin(fin.getHours());
 
         return tutorDAO.insertar(tutor);
     }

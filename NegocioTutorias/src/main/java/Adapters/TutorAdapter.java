@@ -26,8 +26,8 @@ public class TutorAdapter implements ITutorAdapter{
         tutorDTO.setTelefono(tutor.getTelefono());
         tutorDTO.setEmail(tutor.getEmail());
         tutorDTO.setEspecialidad(tutor.getEspecialidad());
-        tutorDTO.setInicio(tutor.getInicio());
-        tutorDTO.setFin(tutor.getFin());
+//        tutorDTO.setInicio(tutor.getInicio());
+//        tutorDTO.setFin(tutor.getFin());
         return tutorDTO;
         
     }
@@ -40,8 +40,8 @@ public class TutorAdapter implements ITutorAdapter{
         tutorEntidad.setTelefono(tutor.getTelefono());
         tutorEntidad.setEmail(tutor.getEmail());
         tutorEntidad.setEspecialidad(tutor.getEspecialidad());
-        tutorEntidad.setInicio(tutor.getInicio());
-        tutorEntidad.setFin(tutor.getFin());
+        tutorEntidad.setInicio(tutor.getInicio().getHours());
+        tutorEntidad.setFin(tutor.getFin().getHours());
         return tutorEntidad;
     }
 

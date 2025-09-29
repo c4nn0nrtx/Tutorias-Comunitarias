@@ -5,6 +5,7 @@
 package views;
 
 import com.mycompany.presentaciontutorias.Aplicacion;
+import javax.swing.JPanel;
 
 /**
  *
@@ -38,16 +39,14 @@ public class MenuSistema extends javax.swing.JFrame {
         menuSesiones = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setForeground(new java.awt.Color(54, 111, 197));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("¡Bienvenido!");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 210, 30));
+        jPanel2.add(jLabel1);
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 640));
+        jMenuBar1.setMaximumSize(new java.awt.Dimension(1200, 800));
 
         menuTutorias.setText("Administrar Tutores");
         menuTutorias.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,6 +67,21 @@ public class MenuSistema extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(415, 415, 415))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(582, Short.MAX_VALUE))
+        );
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -87,6 +101,8 @@ public class MenuSistema extends javax.swing.JFrame {
     private javax.swing.JMenu menuTutorias;
     // End of variables declaration//GEN-END:variables
 
-
+    public JPanel getPanel(){
+        return jPanel2;
+    }
 
 }

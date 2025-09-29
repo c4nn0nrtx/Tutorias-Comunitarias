@@ -21,16 +21,16 @@ public class TutorDAO implements ITutorDAO {
 
     @Override
     public boolean insertar(Tutor tutor) {
-        String sql = "INSERT INTO Tutor(nombre, email, especialidad, telefono,inicio, fin) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Tutores(nombre, email, especialidad, telefono,inicio, fin) VALUES (?, ?, ?, ?, ?, ?)";
         try (
             Connection con = ConexionDB.getConnection(); 
             PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, tutor.getNombre());
-            ps.setString(3, tutor.getEmail());
-            ps.setString(2, tutor.getEspecialidad());
+            ps.setString(2, tutor.getEmail());
+            ps.setString(3, tutor.getEspecialidad());
             ps.setString(4, tutor.getTelefono());
-            ps.setDate(5, tutor.getInicio());
-            ps.setDate(6, tutor.getFin());
+            ps.setInt(5, tutor.getInicio());
+            ps.setInt(6, tutor.getFin());
 
             return ps.executeUpdate() > 0;
 
@@ -43,7 +43,7 @@ public class TutorDAO implements ITutorDAO {
 
     @Override
     public Tutor obtenerPorId(Long idTutor) {
-        String sql = "SELECT * FROM Tutor WHERE idTutor = ?";
+        String sql = "SELECT * FROM Tutores WHERE id_Tutor = ?";
         Tutor tutor = null;
 
         try (Connection conn = ConexionDB.getConnection();
@@ -54,7 +54,7 @@ public class TutorDAO implements ITutorDAO {
 
             if (rs.next()) {
                 tutor = new Tutor();
-                tutor.setIdTutor(rs.getLong("idTutor"));
+                tutor.setIdTutor(rs.getLong("id_Tutor"));
                 tutor.setNombre(rs.getString("nombre"));
                 tutor.setEmail(rs.getString("email"));
                 tutor.setEspecialidad(rs.getString("especialidad"));
@@ -71,14 +71,14 @@ public class TutorDAO implements ITutorDAO {
 
     @Override
     public List<Tutor> obtenerTodos() {
-        String sql = "SELECT * FROM Tutor";
+        String sql = "SELECT * FROM Tutores";
         List<Tutor> lista = new ArrayList<>();
         try (Connection con = ConexionDB.getConnection(); 
                 PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 Tutor tutor = new Tutor();
-                tutor.setIdTutor(rs.getLong("idTutor"));
+                tutor.setIdTutor(rs.getLong("id_Tutor"));
                 tutor.setNombre(rs.getString("nombre"));
                 tutor.setEmail(rs.getString("email"));
                 tutor.setEspecialidad(rs.getString("especialidad"));
@@ -95,7 +95,7 @@ public class TutorDAO implements ITutorDAO {
 
     @Override
     public boolean actualizar(Tutor tutor) {
-        String sql = "UPDATE Tutor SET nombre = ?, email = ?, especialidad = ?, telefono = ? WHERE idTutor = ?";
+        String sql = "UPDATE Tutores SET nombre = ?, email = ?, especialidad = ?, telefono = ? WHERE idTutor = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -114,7 +114,7 @@ public class TutorDAO implements ITutorDAO {
 
     @Override
     public boolean eliminar(Long idTutor) {
-        String sql = "DELETE FROM Tutor WHERE idTutor = ?";
+        String sql = "DELETE FROM Tutor WHERE id_Tutor = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 

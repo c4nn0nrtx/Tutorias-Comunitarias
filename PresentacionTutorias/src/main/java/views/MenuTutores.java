@@ -4,13 +4,15 @@
  */
 package views;
 
-import DTOs.TutorDTO;
-import Exception.NegocioException;
+import Dominio.Tutor;
 import com.mycompany.presentaciontutorias.Aplicacion;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static com.sun.java.accessibility.util.SwingEventMonitor.addDocumentListener;
+import java.awt.Dimension;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import org.w3c.dom.events.DocumentEvent;
 
 /**
  *
@@ -23,6 +25,7 @@ public class MenuTutores extends javax.swing.JPanel {
      */
     public MenuTutores(Aplicacion control) {
         this.control = control;
+        setPreferredSize(new Dimension(1050, 700));
         initComponents();
         valoresDefault();
         
@@ -43,6 +46,7 @@ public class MenuTutores extends javax.swing.JPanel {
         BtnActualizar = new javax.swing.JButton();
         BtnEliminar1 = new javax.swing.JButton();
         BtnAgregar = new javax.swing.JButton();
+        txtBuscarId = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -87,6 +91,9 @@ public class MenuTutores extends javax.swing.JPanel {
             }
         });
         add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 630, -1, -1));
+
+        txtBuscarId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        add(txtBuscarId, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarMouseClicked
@@ -102,15 +109,15 @@ public class MenuTutores extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaTutores;
+    private javax.swing.JTextField txtBuscarId;
     // End of variables declaration//GEN-END:variables
 
     public void CargarTabla(){
         DefaultTableModel model = (DefaultTableModel) tablaTutores.getModel();
         model.setRowCount(0);
-
-        ArrayList<TutorDTO> tutores;
-            tutores = control.consultarTodos();
-            for (TutorDTO tutor : tutores) {
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        tablaTutores.setRowSorter(sorter);
+        for (Tutor tutor : control.consultarTodos()) {
             Object[] fila = new Object[]{
                 tutor.getId(),
                 tutor.getNombre(),
@@ -119,12 +126,39 @@ public class MenuTutores extends javax.swing.JPanel {
                 tutor.getTelefono()
                 };
             model.addRow(fila);
-        
         }
     }
     
+    public void filtrarPorID() {
+        String texto = txtBuscarId.getText().trim();
+        DefaultTableModel model = (DefaultTableModel) tablaTutores.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        tablaTutores.setRowSorter(sorter);
+        if (texto.isEmpty()) {
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter("^" + texto + "$", 0));
+        }
+}
     public void valoresDefault(){
         CargarTabla();
+        txtBuscarId.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                filtrarPorID();
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                filtrarPorID();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                filtrarPorID();
+            }
+        });
     }
     
+
 }

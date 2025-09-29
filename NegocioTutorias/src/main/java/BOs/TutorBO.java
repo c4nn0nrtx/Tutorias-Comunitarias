@@ -25,7 +25,7 @@ public class TutorBO implements ITutorBO{
     @Override
     public TutorDTO registrarTutor(TutorDTO tutor) throws NegocioException {
         try{
-            if(tutorDAO.agregarTutor(tutor.getNombre(), tutor.getEmail(),tutor.getEspecialidad(), tutor.getTelefono())){
+            if(tutorDAO.agregarTutor(tutor.getNombre(), tutor.getEmail(),tutor.getEspecialidad(), tutor.getTelefono(), tutor.getInicio(), tutor.getFin())){
                 return tutor;
             }else{
                 throw new NegocioException("Error al agregar al Tutor");

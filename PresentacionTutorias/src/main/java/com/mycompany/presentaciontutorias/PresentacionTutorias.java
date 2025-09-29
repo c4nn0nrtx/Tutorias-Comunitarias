@@ -11,6 +11,7 @@ package com.mycompany.presentaciontutorias;
 public class PresentacionTutorias {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Aplicacion control = new Aplicacion();
+        control.iniciar();
     }
 }

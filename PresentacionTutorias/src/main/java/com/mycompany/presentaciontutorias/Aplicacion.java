@@ -6,12 +6,10 @@
 package com.mycompany.presentaciontutorias;
 
 import Controller.TutorController;
-import DTOs.TutorDTO;
-import Exception.NegocioException;
+import Dominio.Tutor;
 import Interfaces.ITutorBO;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JPanel;
 import views.AgregarTutor;
 import views.MenuSistema;
@@ -31,30 +29,44 @@ public class Aplicacion {
 
     public Aplicacion() {
         menuSistema = new MenuSistema(this);
-        menuTutores = new MenuTutores(this);
-        agregarTutor = new AgregarTutor();
+        control = new TutorController();
+    }
+    public void iniciar(){
+        menuSistema.setLocationRelativeTo(null);
+        menuSistema.setVisible(true);
     }
 
     public void cambiarPantalla(JPanel nuevaPantalla) {
-        menuSistema.getContentPane().removeAll();
-        menuSistema.getContentPane().add(nuevaPantalla);
+        menuSistema.getPanel().removeAll();
+        menuSistema.getPanel().add(nuevaPantalla);
+        menuSistema.pack();
+        menuSistema.setLocationRelativeTo(null);
         menuSistema.revalidate();
         menuSistema.repaint();
         menuSistema.setVisible(true);
     }
     
-    public ArrayList<TutorDTO> consultarTodos(){
-        try {
-            return tutorBO.consultarTodos();
-        } catch (NegocioException ex) {
-            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public List<Tutor> consultarTodos(){
+        return control.obtenerTodos();
     }
+    
+    public Boolean confirmarTutor(String nombre, String email, String especialidad, String telefono, Date inicio, Date fin){
+        if(control.agregarTutor(nombre, email, especialidad, telefono, inicio, fin)){
+            mostrarMenuTutores();
+            return true;
+        }
+        mostrarAgregarTutor();
+        return false;
+        
+    }
+    
     public void mostrarAgregarTutor(){
+        agregarTutor = new AgregarTutor(this);
         cambiarPantalla(agregarTutor);
     }
+    
     public void mostrarMenuTutores(){
+        menuTutores = new MenuTutores(this);
         cambiarPantalla(menuTutores);
     }
 }
