@@ -23,7 +23,7 @@ public class AlumnoController {
     }
 
     //Insertar nuevo alumno con validaciones
-    public boolean agregarAlumno(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String escuela_Procedencia, String grado_Escolar, Date fecha_nacimiento) {
+    public boolean agregarAlumno(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String escuela_Procedencia, String grado_Escolar, int edad) {
         if (nombre == null || nombre.trim().isEmpty()) {
             System.err.println("El nombre del alumno no puede estar vacio");
             return false;
@@ -47,8 +47,8 @@ public class AlumnoController {
             System.err.println("Grado escolar no puede estar vacio");
             return false;
         }
-        if (fecha_nacimiento == null) {
-            System.err.println("Fecha de nacimiento no puede estar vacio");
+        if (edad <= 0) {
+            System.err.println("Ingrese una edad correcta");
             return false;
         }
 
@@ -59,7 +59,7 @@ public class AlumnoController {
         alumno.setTelefono(telefono.trim());
         alumno.setEscuela_Procedencia(escuela_Procedencia.trim());
         alumno.setGrado_Escolar(grado_Escolar.trim());
-        alumno.setFecha_nacimiento(fecha_nacimiento);
+        alumno.setEdad(edad);
 
         return alumnoDAO.insertar(alumno);
 
@@ -80,7 +80,7 @@ public class AlumnoController {
     }
 
     //validar actualizacion de aluimnos
-    public boolean actualizarAlumno(int idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String escuela_Procedencia, String grado_Escolar, Date fecha_nacimiento) {
+    public boolean actualizarAlumno(int idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String escuela_Procedencia, String grado_Escolar, int edad  ) {
         if (idAlumno <= 0) {
             System.err.println("ID invalido");
             return false;
@@ -108,7 +108,7 @@ public class AlumnoController {
            System.err.println("Grado escolar no puede estar vacio");
             return false; 
         }
-        if (fecha_nacimiento == null){
+        if (edad <= 0){
            System.err.println("Fecha de nacimiento no puede estar vacio");
             return false; 
         }
@@ -121,7 +121,7 @@ public class AlumnoController {
         alumno.setTelefono(telefono.trim());
         alumno.setEscuela_Procedencia(escuela_Procedencia.trim());
         alumno.setGrado_Escolar(grado_Escolar.trim());
-        alumno.setFecha_nacimiento(fecha_nacimiento);
+        alumno.setEdad(edad);
         
         return alumnoDAO.actualizar(alumno);
     }

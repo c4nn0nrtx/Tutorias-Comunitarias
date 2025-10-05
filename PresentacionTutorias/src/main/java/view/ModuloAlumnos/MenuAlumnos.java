@@ -2,33 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package views;
+package view.ModuloAlumnos;
 
+import Dominio.Alumno;
 import Dominio.Tutor;
 import com.mycompany.presentaciontutorias.Aplicacion;
-import static com.sun.java.accessibility.util.SwingEventMonitor.addDocumentListener;
 import java.awt.Dimension;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import org.w3c.dom.events.DocumentEvent;
 
 /**
  *
  * @author HP
  */
-public class MenuTutores extends javax.swing.JPanel {
+public class MenuAlumnos extends javax.swing.JPanel {
     private Aplicacion control;
     /**
-     * Creates new form MenuTutores
+     * Creates new form MenuAdmin
      */
-    public MenuTutores(Aplicacion control) {
+    public MenuAlumnos(Aplicacion control) {
         this.control = control;
-        setPreferredSize(new Dimension(1050, 700));
         initComponents();
         valoresDefault();
-        
     }
 
     /**
@@ -41,7 +39,7 @@ public class MenuTutores extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaTutores = new javax.swing.JTable();
+        tablaAlumnos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         BtnActualizar = new javax.swing.JButton();
         BtnEliminar1 = new javax.swing.JButton();
@@ -50,36 +48,37 @@ public class MenuTutores extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablaTutores.setModel(new javax.swing.table.DefaultTableModel(
+        tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Id", "Nombre", "Especialidad", "E-mail", "Telefono", "Disponibilidad"
+
             }
         ));
-        jScrollPane1.setViewportView(tablaTutores);
+        tablaAlumnos.setEnabled(false);
+        jScrollPane1.setViewportView(tablaAlumnos);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 830, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 950, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("Administrar Tutores");
+        jLabel1.setText("Administrar Alumnos");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
         BtnActualizar.setBackground(new java.awt.Color(0, 0, 0));
         BtnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BtnActualizar.setForeground(new java.awt.Color(204, 204, 204));
         BtnActualizar.setText("Actualizar");
-        add(BtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 630, -1, -1));
+        add(BtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 570, -1, -1));
 
         BtnEliminar1.setBackground(new java.awt.Color(0, 0, 0));
         BtnEliminar1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BtnEliminar1.setForeground(new java.awt.Color(204, 204, 204));
         BtnEliminar1.setText("Eliminar");
-        add(BtnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 630, -1, -1));
+        add(BtnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 570, -1, -1));
 
         BtnAgregar.setBackground(new java.awt.Color(0, 0, 0));
         BtnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -90,7 +89,7 @@ public class MenuTutores extends javax.swing.JPanel {
                 BtnAgregarMouseClicked(evt);
             }
         });
-        add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 630, -1, -1));
+        add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 570, -1, -1));
 
         txtBuscarId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txtBuscarId, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 200, -1));
@@ -98,7 +97,7 @@ public class MenuTutores extends javax.swing.JPanel {
 
     private void BtnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarMouseClicked
         // TODO add your handling code here:
-        control.mostrarAgregarTutor();
+        control.mostrarIngresarNombreAlumnos();
     }//GEN-LAST:event_BtnAgregarMouseClicked
 
 
@@ -108,38 +107,58 @@ public class MenuTutores extends javax.swing.JPanel {
     private javax.swing.JButton BtnEliminar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaTutores;
+    private javax.swing.JTable tablaAlumnos;
     private javax.swing.JTextField txtBuscarId;
     // End of variables declaration//GEN-END:variables
-
+    
     public void CargarTabla(){
-        DefaultTableModel model = (DefaultTableModel) tablaTutores.getModel();
+        DefaultTableModel model = new DefaultTableModel(
+            new Object[]{"ID", "Nombre", "Apellido Paterno", "Apellido Materno", "Teléfono", "Esceuela Procedencia", "Grado Escolar", "Edad"},0
+        ) {
+        @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+        };
         model.setRowCount(0);
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-        tablaTutores.setRowSorter(sorter);
-        for (Tutor tutor : control.consultarTodos()) {
+        tablaAlumnos.setRowSorter(sorter);
+        for (Alumno alumno : control.consultarTodosAlumnos()) {
             Object[] fila = new Object[]{
-                tutor.getId(),
-                tutor.getNombre(),
-                tutor.getEspecialidad(),
-                tutor.getEmail(),
-                tutor.getTelefono()
+                alumno.getId(),
+                alumno.getNombre(),
+                alumno.getApellidoPaterno(),
+                alumno.getApellidoMaterno(),
+                alumno.getEscuela_Procedencia(),
+                alumno.getGrado_Escolar(),
+                alumno.getTelefono(),
+                alumno.getEdad()
                 };
             model.addRow(fila);
         }
+        tablaAlumnos.setRowSelectionAllowed(true);
+        tablaAlumnos.setColumnSelectionAllowed(false);
+        tablaAlumnos.setCellSelectionEnabled(false);
+        tablaAlumnos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tablaAlumnos.getTableHeader().setReorderingAllowed(false);
+        tablaAlumnos.getTableHeader().setResizingAllowed(false);
+        tablaAlumnos.setModel(model);
+        
     }
     
     public void filtrarPorID() {
         String texto = txtBuscarId.getText().trim();
-        DefaultTableModel model = (DefaultTableModel) tablaTutores.getModel();
+        DefaultTableModel model = (DefaultTableModel) tablaAlumnos.getModel();
+        
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-        tablaTutores.setRowSorter(sorter);
+        tablaAlumnos.setRowSorter(sorter);
         if (texto.isEmpty()) {
             sorter.setRowFilter(null);
         } else {
             sorter.setRowFilter(RowFilter.regexFilter("^" + texto + "$", 0));
         }
-}
+        
+    }
     public void valoresDefault(){
         CargarTabla();
         txtBuscarId.getDocument().addDocumentListener(new DocumentListener() {
@@ -158,7 +177,6 @@ public class MenuTutores extends javax.swing.JPanel {
                 filtrarPorID();
             }
         });
+     
     }
-    
-
 }

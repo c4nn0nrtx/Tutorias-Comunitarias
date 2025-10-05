@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package views;
+package view.ModuloTutores;
 
 import com.mycompany.presentaciontutorias.Aplicacion;
 import java.awt.Dimension;
@@ -21,7 +21,6 @@ private Aplicacion control;
      */
     public AgregarTutor(Aplicacion control) {
         this.control = control;
-        setPreferredSize(new Dimension(581, 730));
         initComponents();
         valoresDefault();
     }

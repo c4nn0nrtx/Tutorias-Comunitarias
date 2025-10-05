@@ -83,6 +83,8 @@ public class TutorDAO implements ITutorDAO {
                 tutor.setEmail(rs.getString("email"));
                 tutor.setEspecialidad(rs.getString("especialidad"));
                 tutor.setTelefono(rs.getString("telefono"));
+                tutor.setInicio(rs.getInt("inicio"));
+                tutor.setFin(rs.getInt("fin"));
                 lista.add(tutor);
             }
 

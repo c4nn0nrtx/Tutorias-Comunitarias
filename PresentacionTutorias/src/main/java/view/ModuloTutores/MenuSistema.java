@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package views;
+package view.ModuloTutores;
 
 import com.mycompany.presentaciontutorias.Aplicacion;
 import javax.swing.JPanel;
@@ -18,6 +18,7 @@ public class MenuSistema extends javax.swing.JFrame {
      */
     public MenuSistema(Aplicacion control) {
         this.control = control;
+        
         initComponents();
     }
 
@@ -57,6 +58,11 @@ public class MenuSistema extends javax.swing.JFrame {
         jMenuBar1.add(menuTutorias);
 
         menuAlumnos.setText("Administrar Alumnos");
+        menuAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuAlumnosMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuAlumnos);
 
         menuMaterias.setText("Administrar Materias");
@@ -89,6 +95,11 @@ public class MenuSistema extends javax.swing.JFrame {
         // TODO add your handling code here:
         control.mostrarMenuTutores();
     }//GEN-LAST:event_menuTutoriasMouseClicked
+
+    private void menuAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAlumnosMouseClicked
+        // TODO add your handling code here:
+        control.mostrarMenuAlumnos();
+    }//GEN-LAST:event_menuAlumnosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

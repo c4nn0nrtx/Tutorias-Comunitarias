@@ -21,6 +21,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Administrar Alumnos"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuAlumnosMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuMaterias">
           <Properties>

@@ -24,7 +24,7 @@ public class AlumnoDAO implements IAlumnoDAO {
 
     @Override
     public boolean insertar(Alumno alumno) {
-        String sql = "INSERT INTO Alumno(nombre, apellidoPaterno, apellidoMaterno, telefono, escuela_Procedencia, grado_Escolar) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Alumno(nombre, apellidoPaterno, apellidoMaterno, telefono, escuela_Procedencia, grado_Escolar, edad) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (
             Connection con = ConexionDB.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, alumno.getNombre());
@@ -33,6 +33,7 @@ public class AlumnoDAO implements IAlumnoDAO {
             ps.setString(4, alumno.getTelefono());
             ps.setString(5, alumno.getEscuela_Procedencia());
             ps.setString(6, alumno.getGrado_Escolar());
+            ps.setInt(7, alumno.getEdad());
 
             return ps.executeUpdate() > 0;
 
@@ -61,6 +62,7 @@ public class AlumnoDAO implements IAlumnoDAO {
                 alumno.setTelefono(rs.getString("telefono"));
                 alumno.setEscuela_Procedencia(rs.getString("escuela_Procedencia"));
                 alumno.setGrado_Escolar(rs.getString("grado_Escolar"));
+                alumno.setEdad(rs.getInt("edad"));
                 return alumno;
 
             }
@@ -87,6 +89,7 @@ public class AlumnoDAO implements IAlumnoDAO {
                 alumno.setTelefono(rs.getString("telefono"));
                 alumno.setEscuela_Procedencia(rs.getString("escuela_Procedencia"));
                 alumno.setGrado_Escolar(rs.getString("grado_Escolar"));
+                alumno.setEdad(rs.getInt("edad"));
                 lista.add(alumno);
             }
             
@@ -99,7 +102,7 @@ public class AlumnoDAO implements IAlumnoDAO {
 
     @Override
     public boolean actualizar(Alumno alumno) {
-        String sql = "UPDATE Alumno SET nombre = ?, apellidoPaterno = ?, apellidoMaterno = ?, telefono = ?, escuela_Procedencia = ?, grado_Escolar = ? WHERE idAlumno = ?";
+        String sql = "UPDATE Alumno SET nombre = ?, apellidoPaterno = ?, apellidoMaterno = ?, telefono = ?, escuela_Procedencia = ?, grado_Escolar = ?, edad = ? WHERE idAlumno = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -109,6 +112,7 @@ public class AlumnoDAO implements IAlumnoDAO {
             ps.setString(4, alumno.getTelefono());
             ps.setString(5, alumno.getEscuela_Procedencia());
             ps.setString(6, alumno.getGrado_Escolar());
+            ps.setInt(7, alumno.getEdad());
 
             return ps.executeUpdate() > 0;
 
