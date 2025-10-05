@@ -13,8 +13,12 @@ import java.util.Date;
  */
 public class Alumno {
     private int id;
-    private String nombre, apellidoPaterno, apellidoMaterno, 
-            telefono, escuela_Procedencia, grado_Escolar;
+    private String nombre, 
+            apellidoPaterno, 
+            apellidoMaterno, 
+            telefono, 
+            escuela_Procedencia, 
+            grado_Escolar;
     private Date fecha_nacimiento;
 
     public Alumno(String nombre, String nombrePaterno, String nombreMaterno, String telefono, String escuela_Procedencia, String grado_Escolar, Date fecha_nacimiento) {
