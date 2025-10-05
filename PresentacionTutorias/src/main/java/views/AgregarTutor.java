@@ -105,6 +105,11 @@ private Aplicacion control;
                 BtnConfirmarMouseClicked(evt);
             }
         });
+        BtnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnConfirmarActionPerformed(evt);
+            }
+        });
         add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 670, -1, -1));
 
         SpinnerFin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -138,6 +143,10 @@ private Aplicacion control;
         control.confirmarTutor(campoNombre.getText(),campoEmail.getText(),campoEspecialidad.getText(),campoTelefono.getText(),(Date)SpinnerInicio.getValue(),(Date)SpinnerFin.getValue());
         
     }//GEN-LAST:event_BtnConfirmarMouseClicked
+
+    private void BtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfirmarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnConfirmarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
