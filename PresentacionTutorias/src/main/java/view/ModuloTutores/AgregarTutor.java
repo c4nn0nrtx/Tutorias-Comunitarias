@@ -40,7 +40,6 @@ private Aplicacion control;
         jLabel4 = new javax.swing.JLabel();
         campoTelefono = new javax.swing.JTextField();
         campoNombre = new javax.swing.JTextField();
-        campoEmail = new javax.swing.JTextField();
         campoEspecialidad = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         BtnCancelar = new javax.swing.JButton();
@@ -50,6 +49,8 @@ private Aplicacion control;
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        campoEmail = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -70,16 +71,13 @@ private Aplicacion control;
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
 
         campoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 240, -1));
+        add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 240, -1));
 
         campoNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 240, -1));
-
-        campoEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(campoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 240, -1));
+        add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 320, -1));
 
         campoEspecialidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(campoEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 240, -1));
+        add(campoEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 240, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel5.setText("Agregar Tutor");
@@ -125,6 +123,12 @@ private Aplicacion control;
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setText("Fin:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 520, -1, -1));
+
+        campoEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        add(campoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 180, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@gmail.com", "@outlook.es", "@hotmail.com" }));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelarMouseClicked
@@ -148,6 +152,7 @@ private Aplicacion control;
     private javax.swing.JTextField campoEspecialidad;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoTelefono;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

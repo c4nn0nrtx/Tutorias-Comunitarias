@@ -4,7 +4,9 @@
  */
 package view.ModuloAlumnos;
 
+import DTOs.AlumnoDTO;
 import com.mycompany.presentaciontutorias.Aplicacion;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -12,12 +14,14 @@ import com.mycompany.presentaciontutorias.Aplicacion;
  */
 public class PanelNombres extends javax.swing.JPanel {
     private Aplicacion control;
+    private AlumnoDTO alumno;
     /**
      * Creates new form PanelNombres
      */
     public PanelNombres(Aplicacion control) {
         this.control = control;
         initComponents();
+        this.alumno = new AlumnoDTO();
     }
 
     /**
@@ -100,6 +104,10 @@ public class PanelNombres extends javax.swing.JPanel {
 
     private void btnContinuarlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarlMouseClicked
         // TODO add your handling code here:
+        alumno.setNombre(nombres.getText());
+        alumno.setApellidoPaterno(campoPaterno.getText());
+        alumno.setApellidoMaterno(campoMaterno.getText());
+        control.setAlumno(alumno);
         control.mostraDatosAlumno();
     }//GEN-LAST:event_btnContinuarlMouseClicked
 
@@ -116,4 +124,35 @@ public class PanelNombres extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField nombres;
     // End of variables declaration//GEN-END:variables
+
+
+    public void valoresDefault(){
+       nombres.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           if(nombres.getText().length() >= 50){
+               e.consume();
+           }
+       }
+    });
+       campoPaterno.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           if(campoPaterno.getText().length() >= 50){
+               e.consume();
+           }
+       }
+    });
+       nombres.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           if(nombres.getText().length() >= 50){
+               e.consume();
+           }
+       }
+    });
+   }
 }

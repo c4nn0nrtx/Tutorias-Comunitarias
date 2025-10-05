@@ -4,17 +4,26 @@
  */
 package view.ModuloAlumnos;
 
+import DTOs.AlumnoDTO;
+import com.mycompany.presentaciontutorias.Aplicacion;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HP
  */
 public class ResumenAlumno extends javax.swing.JPanel {
-
+    private Aplicacion control;
+    private AlumnoDTO alumno;
     /**
      * Creates new form ResumenAlumno
      */
-    public ResumenAlumno() {
+    public ResumenAlumno(Aplicacion control) {
+        this.control= control;
         initComponents();
+        this.alumno = control.getAlumnoTemporal();
+        llenarTexfield();
     }
 
     /**
@@ -26,19 +35,163 @@ public class ResumenAlumno extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 621, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
-        );
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        campoEscuelaProcedencia = new javax.swing.JTextField();
+        campoNombre = new javax.swing.JTextField();
+        campoApellidoMaterno = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        campoApellidoPaterno = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        campoEdad = new javax.swing.JTextField();
+        campoGradoEscolar = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        campoTelefono = new javax.swing.JTextField();
+        BtnCancelar = new javax.swing.JButton();
+        BtnConfirmar = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Escuela Procedencia");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setText("Nombre(s):");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setText("Apellido Paterno:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setText("Apellido Materno:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+
+        campoEscuelaProcedencia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoEscuelaProcedencia.setEnabled(false);
+        add(campoEscuelaProcedencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 290, -1));
+
+        campoNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoNombre.setEnabled(false);
+        add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 290, -1));
+
+        campoApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoApellidoMaterno.setEnabled(false);
+        add(campoApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 290, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel6.setText("Edad:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
+
+        campoApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoApellidoPaterno.setEnabled(false);
+        add(campoApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 290, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setText("Registro de Alumno");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel7.setText("Grado Escolar");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
+
+        campoEdad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoEdad.setEnabled(false);
+        add(campoEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 160, -1));
+
+        campoGradoEscolar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoGradoEscolar.setEnabled(false);
+        add(campoGradoEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 290, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel8.setText("Telefono:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+
+        campoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoTelefono.setEnabled(false);
+        add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, 290, -1));
+
+        BtnCancelar.setBackground(new java.awt.Color(204, 204, 204));
+        BtnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        BtnCancelar.setText("Cancelar");
+        BtnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnCancelarMouseClicked(evt);
+            }
+        });
+        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, -1, -1));
+
+        BtnConfirmar.setBackground(new java.awt.Color(0, 0, 0));
+        BtnConfirmar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        BtnConfirmar.setForeground(new java.awt.Color(204, 204, 204));
+        BtnConfirmar.setText("Confirmar");
+        BtnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnConfirmarMouseClicked(evt);
+            }
+        });
+        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelarMouseClicked
+        // TODO add your handling code here:
+        control.mostrarMenuAlumnos();
+    }//GEN-LAST:event_BtnCancelarMouseClicked
+
+    private void BtnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConfirmarMouseClicked
+        // TODO add your handling code here:
+        Boolean confirmarAlumno = control.confirmarAlumno(alumno);
+        System.out.println("Valor de confirmarAlumno=  " +  confirmarAlumno);
+        if (confirmarAlumno){
+            JOptionPane.showMessageDialog(
+            null, 
+            "Alumno registrado con exito", 
+            "Alumno Registrado", 
+            JOptionPane.YES_OPTION
+        );
+        }else{
+           JOptionPane.showMessageDialog(
+            null, 
+            "Ocurrió un error al registrar el alumno.", 
+            "Error", 
+            JOptionPane.ERROR_MESSAGE
+        ); 
+        }
+
+    }//GEN-LAST:event_BtnConfirmarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnConfirmar;
+    private javax.swing.JTextField campoApellidoMaterno;
+    private javax.swing.JTextField campoApellidoPaterno;
+    private javax.swing.JTextField campoEdad;
+    private javax.swing.JTextField campoEscuelaProcedencia;
+    private javax.swing.JTextField campoGradoEscolar;
+    private javax.swing.JTextField campoNombre;
+    private javax.swing.JTextField campoTelefono;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
+
+   public void llenarTexfield(){
+       campoNombre.setText(alumno.getNombre());
+       campoApellidoPaterno.setText(alumno.getApellidoPaterno());
+       campoApellidoMaterno.setText(alumno.getApellidoMaterno());
+       campoEdad.setText(String.valueOf(alumno.getEdad()));
+       campoTelefono.setText(String.valueOf(alumno.getTelefono()));
+       campoGradoEscolar.setText(alumno.getGradoEscolar());
+       campoEscuelaProcedencia.setText(alumno.getEscuelaProcedencia());
+   }
 }

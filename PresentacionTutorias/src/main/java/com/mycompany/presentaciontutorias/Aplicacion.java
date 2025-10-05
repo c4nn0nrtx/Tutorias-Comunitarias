@@ -7,6 +7,7 @@ package com.mycompany.presentaciontutorias;
 
 import Controller.AlumnoController;
 import Controller.TutorController;
+import DTOs.AlumnoDTO;
 import Dominio.Alumno;
 import Dominio.Tutor;
 import java.util.Date;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import view.ModuloAlumnos.MenuAlumnos;
 import view.ModuloAlumnos.PanelDatosAlumno;
 import view.ModuloAlumnos.PanelNombres;
+import view.ModuloAlumnos.ResumenAlumno;
 import view.ModuloTutores.AgregarTutor;
 import view.ModuloTutores.MenuSistema;
 import view.ModuloTutores.MenuTutores;
@@ -36,7 +38,8 @@ public class Aplicacion {
     private MenuAlumnos menuAlumnos;
     private PanelNombres nombresAlumno;
     private PanelDatosAlumno datosAlumno;
-    
+    private ResumenAlumno resumenAlumno;
+    private AlumnoDTO alumnoTemporal;
     //Controllers
     
     private TutorController controlTutores;
@@ -71,6 +74,8 @@ public class Aplicacion {
     public List<Alumno> consultarTodosAlumnos(){
         return controlAlumnos.obtenerTodos();
     }
+    
+    
     //Caso Agregar Ttutor
     public Boolean confirmarTutor(String nombre, String email, String especialidad, String telefono, Date inicio, Date fin){
         if(controlTutores.agregarTutor(nombre, email, especialidad, telefono, inicio, fin)){
@@ -81,6 +86,8 @@ public class Aplicacion {
         return false;
         
     }
+    
+    
     //Views
     public void mostrarAgregarTutor(){
         agregarTutor = new AgregarTutor(this);
@@ -107,5 +114,27 @@ public class Aplicacion {
     public void mostraDatosAlumno(){
         datosAlumno = new PanelDatosAlumno(this);
         cambiarPantalla(datosAlumno);
+    }
+    
+    public void mostrarResumenAlumno(){
+        resumenAlumno = new ResumenAlumno(this);
+        cambiarPantalla(resumenAlumno);
+    }
+    public void setAlumno(AlumnoDTO alumno){
+        this.alumnoTemporal = alumno;
+    }
+    public AlumnoDTO getAlumnoTemporal(){
+        return alumnoTemporal;
+    }
+    
+    //caso agregar alumno
+    public Boolean confirmarAlumno(AlumnoDTO alumno){
+        if(controlAlumnos.agregarAlumno(alumno.getNombre(), alumno.getApellidoPaterno(), alumno.getApellidoMaterno(), alumno.getTelefono(), 
+                alumno.getEscuelaProcedencia(),alumno.getGradoEscolar(), alumno.getEdad())){
+            mostrarMenuAlumnos();
+            return true;
+        }
+        mostrarIngresarNombreAlumnos();
+        return false; 
     }
 }

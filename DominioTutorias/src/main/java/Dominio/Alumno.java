@@ -12,9 +12,9 @@ import java.util.Date;
  * @author $Luis Carlos Manjarrez Gonzalez
  */
 public class Alumno {
-    private int id, edad;
+    private int id, edad,telefono;
     private String nombre, apellidoPaterno, apellidoMaterno, 
-            telefono, escuela_Procedencia, grado_Escolar;
+             escuela_Procedencia, grado_Escolar;
 //    private Date fecha_nacimiento; en el documento pide la edad chingue su
 
     
@@ -30,7 +30,7 @@ public class Alumno {
         return id;
     }
 
-    public Alumno(int id, int edad, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String escuela_Procedencia, String grado_Escolar) {
+    public Alumno(int id, int edad, String nombre, String apellidoPaterno, String apellidoMaterno, int telefono, String escuela_Procedencia, String grado_Escolar) {
         this.id = id;
         this.edad = edad;
         this.nombre = nombre;
@@ -65,11 +65,11 @@ public class Alumno {
         this.apellidoMaterno = nombreMaterno;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 

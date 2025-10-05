@@ -113,7 +113,7 @@ public class MenuAlumnos extends javax.swing.JPanel {
     
     public void CargarTabla(){
         DefaultTableModel model = new DefaultTableModel(
-            new Object[]{"ID", "Nombre", "Apellido Paterno", "Apellido Materno", "Teléfono", "Esceuela Procedencia", "Grado Escolar", "Edad"},0
+            new Object[]{"ID", "Nombre", "Apellido Paterno", "Apellido Materno", "Esceuela Procedencia", "Grado Escolar", "Teléfono","Edad"},0
         ) {
         @Override
             public boolean isCellEditable(int row, int column) {

@@ -4,7 +4,9 @@
  */
 package view.ModuloAlumnos;
 
+import DTOs.AlumnoDTO;
 import com.mycompany.presentaciontutorias.Aplicacion;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -12,12 +14,14 @@ import com.mycompany.presentaciontutorias.Aplicacion;
  */
 public class PanelDatosAlumno extends javax.swing.JPanel {
     private Aplicacion control;
+    private AlumnoDTO alumno;
     /**
      * Creates new form PanelInformarcionAlumno
      */
     public PanelDatosAlumno(Aplicacion control) {
         this.control = control;
         initComponents();
+        this.alumno = control.getAlumnoTemporal();
     }
 
     /**
@@ -35,8 +39,8 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         escuela = new javax.swing.JTextField();
-        edad = new javax.swing.JTextField();
-        telefono = new javax.swing.JTextField();
+        campoEdad = new javax.swing.JTextField();
+        campoTelefono = new javax.swing.JTextField();
         gradoEscolar = new javax.swing.JTextField();
         btnContinuar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -49,31 +53,31 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Grado Escolar");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 130, 50));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 130, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Telefono");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 100, 50));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 100, 50));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Escuela Procedencia");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 170, 50));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 170, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Edad");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 50, 50));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 50, 50));
 
         escuela.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(escuela, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 180, -1));
+        add(escuela, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 300, -1));
 
-        edad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 80, -1));
+        campoEdad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        add(campoEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 80, -1));
 
-        telefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 220, -1));
+        campoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 300, -1));
 
         gradoEscolar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(gradoEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 160, -1));
+        add(gradoEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 170, -1));
 
         btnContinuar.setBackground(new java.awt.Color(0, 0, 0));
         btnContinuar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -105,16 +109,21 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
     private void btnContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinuarMouseClicked
         // TODO add your handling code here:
         //falta logica de Armar el objeto y enviarlo a la App y de ahi a controller, 
-        //checar que se ocupa en la DAO para insertar	
-        //despues de que le de continuar debemos mostrar un resumen
-        control.mostrarMenuAlumnos();
+        
+        alumno.setTelefono(Integer.parseInt(campoEdad.getText()));
+        alumno.setEdad(Integer.parseInt(campoTelefono.getText()));
+        alumno.setEscuelaProcedencia(escuela.getText());
+        alumno.setGradoEscolar(gradoEscolar.getText());
+        
+        control.mostrarResumenAlumno();
     }//GEN-LAST:event_btnContinuarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnContinuar;
-    private javax.swing.JTextField edad;
+    private javax.swing.JTextField campoEdad;
+    private javax.swing.JTextField campoTelefono;
     private javax.swing.JTextField escuela;
     private javax.swing.JTextField gradoEscolar;
     private javax.swing.JLabel jLabel1;
@@ -122,6 +131,52 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
+
+    public void valoresDefault(){
+       campoEdad.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           char c = e.getKeyChar();
+           if(!Character.isDigit(c)){
+               e.consume();
+           }
+           if(campoEdad.getText().length() >= 3){
+               e.consume();
+           }
+       }
+    });
+       campoTelefono.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           char c = e.getKeyChar();
+           if(!Character.isDigit(c)){
+               e.consume();
+           }
+           if(campoTelefono.getText().length() >= 10){
+               e.consume();
+           }
+       }
+    });
+        gradoEscolar.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           if(gradoEscolar.getText().length() >= 50){
+               e.consume();
+           }
+       }
+    });
+       escuela.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           if(escuela.getText().length() >= 50){
+               e.consume();
+           }
+       }
+    });
+   }
 }
