@@ -2,27 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package view.ModuloAlumnos;
+package view.ModuloTutores;
 
-import DTOs.AlumnoDTO;
+import DTOs.TutorDTO;
 import com.mycompany.presentaciontutorias.Aplicacion;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author HP
  */
-public class ResumenAlumno extends javax.swing.JPanel {
-    private Aplicacion control;
-    private AlumnoDTO alumno;
+public class ResumenTutorActualizado extends javax.swing.JPanel {
+private Aplicacion control;
+private TutorDTO tutor;
     /**
-     * Creates new form ResumenAlumno
+     * Creates new form ResumenTutorActualizado
      */
-    public ResumenAlumno(Aplicacion control) {
+    public ResumenTutorActualizado(Aplicacion control) {
+        this.control = control;
+        this.tutor = control.getTutorTemporal();
         initComponents();
-        this.control= control;
-        this.alumno = control.getAlumnoTemporal();
         llenarTexfield();
     }
 
@@ -39,16 +38,12 @@ public class ResumenAlumno extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        campoEscuelaProcedencia = new javax.swing.JTextField();
+        campoDisponibilidad = new javax.swing.JTextField();
         campoNombre = new javax.swing.JTextField();
-        campoApellidoMaterno = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        campoApellidoPaterno = new javax.swing.JTextField();
+        campoEspecialidad = new javax.swing.JTextField();
+        campoEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        campoEdad = new javax.swing.JTextField();
-        campoGradoEscolar = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         campoTelefono = new javax.swing.JTextField();
         BtnCancelar = new javax.swing.JButton();
         BtnConfirmar = new javax.swing.JButton();
@@ -56,64 +51,48 @@ public class ResumenAlumno extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Escuela Procedencia");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
+        jLabel1.setText("Disponibilidad");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Nombre(s):");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("Apellido Paterno:");
+        jLabel3.setText("Email");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setText("Apellido Materno:");
+        jLabel4.setText("Especialidad");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
-        campoEscuelaProcedencia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoEscuelaProcedencia.setEnabled(false);
-        add(campoEscuelaProcedencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 290, -1));
+        campoDisponibilidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoDisponibilidad.setEnabled(false);
+        add(campoDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 290, -1));
 
         campoNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         campoNombre.setEnabled(false);
         add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 290, -1));
 
-        campoApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoApellidoMaterno.setEnabled(false);
-        add(campoApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 290, -1));
+        campoEspecialidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoEspecialidad.setEnabled(false);
+        add(campoEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 290, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel6.setText("Edad:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
-
-        campoApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoApellidoPaterno.setEnabled(false);
-        add(campoApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 290, -1));
+        campoEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoEmail.setEnabled(false);
+        add(campoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 290, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Actualizacion de Alumno");
+        jLabel5.setText("Actualizacion de tutor");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel7.setText("Grado Escolar");
+        jLabel7.setText("Telefono");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
-
-        campoEdad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoEdad.setEnabled(false);
-        add(campoEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 160, -1));
-
-        campoGradoEscolar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoGradoEscolar.setEnabled(false);
-        add(campoGradoEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 290, -1));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel8.setText("Telefono:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
 
         campoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         campoTelefono.setEnabled(false);
-        add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, 290, -1));
+        add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 290, -1));
 
         BtnCancelar.setBackground(new java.awt.Color(204, 204, 204));
         BtnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -123,7 +102,7 @@ public class ResumenAlumno extends javax.swing.JPanel {
                 BtnCancelarMouseClicked(evt);
             }
         });
-        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, -1, -1));
+        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
 
         BtnConfirmar.setBackground(new java.awt.Color(0, 0, 0));
         BtnConfirmar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -134,45 +113,44 @@ public class ResumenAlumno extends javax.swing.JPanel {
                 BtnConfirmarMouseClicked(evt);
             }
         });
-        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, -1, -1));
+        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelarMouseClicked
         // TODO add your handling code here:
-        control.mostrarMenuAlumnos();
+        control.mostrarMenuTutores();
     }//GEN-LAST:event_BtnCancelarMouseClicked
 
     private void BtnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConfirmarMouseClicked
         // TODO add your handling code here:
-        Boolean confirmarAlumno = control.confirmarAlumno(alumno);
-        if (confirmarAlumno){
-            control.setAlumno(alumno);
-            JOptionPane.showMessageDialog(
-            null, 
-            "Alumno registrado con exito", 
-            "Alumno Registrado", 
-            JOptionPane.YES_OPTION
-        );
+        Boolean confirmarTutor = control.actualizarTutor(control.getTutorTemporal());
+        if (confirmarTutor){
+            tutor = control.getTutorTemporal();
+            control.setTutor(tutor);
+            JOptionPane.showConfirmDialog(
+                null,
+                "Alumno registrado con exito",
+                "Alumno Registrado",
+                JOptionPane.YES_OPTION
+            );
+            control.mostrarMenuTutores();
         }else{
-           JOptionPane.showMessageDialog(
-            null, 
-            "Ocurrió un error al registrar el alumno.", 
-            "Error", 
-            JOptionPane.ERROR_MESSAGE
-        ); 
+            JOptionPane.showMessageDialog(
+                null,
+                "Ocurrió un error al registrar el alumno.",
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
-
     }//GEN-LAST:event_BtnConfirmarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnConfirmar;
-    private javax.swing.JTextField campoApellidoMaterno;
-    private javax.swing.JTextField campoApellidoPaterno;
-    private javax.swing.JTextField campoEdad;
-    private javax.swing.JTextField campoEscuelaProcedencia;
-    private javax.swing.JTextField campoGradoEscolar;
+    private javax.swing.JTextField campoDisponibilidad;
+    private javax.swing.JTextField campoEmail;
+    private javax.swing.JTextField campoEspecialidad;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoTelefono;
     private javax.swing.JLabel jLabel1;
@@ -180,18 +158,17 @@ public class ResumenAlumno extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 
-   public void llenarTexfield(){
-       campoNombre.setText(alumno.getNombre());
-       campoApellidoPaterno.setText(alumno.getApellidoPaterno());
-       campoApellidoMaterno.setText(alumno.getApellidoMaterno());
-       campoEdad.setText(String.valueOf(alumno.getEdad()));
-       campoTelefono.setText(String.valueOf(alumno.getTelefono()));
-       campoGradoEscolar.setText(alumno.getGradoEscolar());
-       campoEscuelaProcedencia.setText(alumno.getEscuelaProcedencia());
+     public void llenarTexfield(){
+         System.out.println("Tutor que llega a resumenTutor--" + tutor.toString());
+       campoNombre.setText(tutor.getNombre());
+       campoEspecialidad.setText(tutor.getEspecialidad());
+       campoEmail.setText(tutor.getEmail());
+       campoTelefono.setText(tutor.getTelefono());
+       campoDisponibilidad.setText(tutor.getDisponibilidad());
+       
+
    }
 }

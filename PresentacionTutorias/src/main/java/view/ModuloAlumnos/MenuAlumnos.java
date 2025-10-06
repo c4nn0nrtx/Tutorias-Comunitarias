@@ -4,10 +4,11 @@
  */
 package view.ModuloAlumnos;
 
+import DTOs.AlumnoDTO;
 import Dominio.Alumno;
-import Dominio.Tutor;
 import com.mycompany.presentaciontutorias.Aplicacion;
-import java.awt.Dimension;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentListener;
@@ -24,8 +25,9 @@ public class MenuAlumnos extends javax.swing.JPanel {
      * Creates new form MenuAdmin
      */
     public MenuAlumnos(Aplicacion control) {
-        this.control = control;
+        
         initComponents();
+        this.control = control;
         valoresDefault();
     }
 
@@ -45,7 +47,9 @@ public class MenuAlumnos extends javax.swing.JPanel {
         BtnEliminar1 = new javax.swing.JButton();
         BtnAgregar = new javax.swing.JButton();
         txtBuscarId = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JButton();
 
+        setMaximumSize(new java.awt.Dimension(900, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
@@ -59,7 +63,11 @@ public class MenuAlumnos extends javax.swing.JPanel {
 
             }
         ));
-        tablaAlumnos.setEnabled(false);
+        tablaAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaAlumnosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaAlumnos);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 950, -1));
@@ -72,13 +80,18 @@ public class MenuAlumnos extends javax.swing.JPanel {
         BtnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BtnActualizar.setForeground(new java.awt.Color(204, 204, 204));
         BtnActualizar.setText("Actualizar");
-        add(BtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 570, -1, -1));
+        BtnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnActualizarMouseClicked(evt);
+            }
+        });
+        add(BtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 570, -1, -1));
 
         BtnEliminar1.setBackground(new java.awt.Color(0, 0, 0));
         BtnEliminar1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BtnEliminar1.setForeground(new java.awt.Color(204, 204, 204));
         BtnEliminar1.setText("Eliminar");
-        add(BtnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 570, -1, -1));
+        add(BtnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, -1, -1));
 
         BtnAgregar.setBackground(new java.awt.Color(0, 0, 0));
         BtnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -89,10 +102,19 @@ public class MenuAlumnos extends javax.swing.JPanel {
                 BtnAgregarMouseClicked(evt);
             }
         });
-        add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 570, -1, -1));
+        add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 570, -1, -1));
 
         txtBuscarId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txtBuscarId, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 200, -1));
+
+        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnLimpiar.setText(" Limpiar Seleccion");
+        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseClicked(evt);
+            }
+        });
+        add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 530, 140, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarMouseClicked
@@ -100,11 +122,40 @@ public class MenuAlumnos extends javax.swing.JPanel {
         control.mostrarIngresarNombreAlumnos();
     }//GEN-LAST:event_BtnAgregarMouseClicked
 
+    private void tablaAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAlumnosMouseClicked
+        // TODO add your handling code here:
+        setTearAlumno(tablaAlumnos.getSelectedRow());
+        
+
+    }//GEN-LAST:event_tablaAlumnosMouseClicked
+
+    private void BtnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnActualizarMouseClicked
+        // TODO add your handling code here:
+        System.out.println("Row Selected--- " + tablaAlumnos.getSelectedRow());
+        if(tablaAlumnos.getSelectedRow() != -1 ){
+            control.mostrarActulizarAlumno();
+        }else{
+            JOptionPane.showMessageDialog(
+                null,
+                "Seleccione a un alumno antes de querer actualizarlo",
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+        
+    }//GEN-LAST:event_BtnActualizarMouseClicked
+
+    private void btnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseClicked
+        // TODO add your handling code here:
+        tablaAlumnos.clearSelection();
+    }//GEN-LAST:event_btnLimpiarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnActualizar;
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnEliminar1;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaAlumnos;
@@ -114,7 +165,8 @@ public class MenuAlumnos extends javax.swing.JPanel {
     public void CargarTabla(){
         DefaultTableModel model = new DefaultTableModel(
             new Object[]{"ID", "Nombre", "Apellido Paterno", "Apellido Materno", "Esceuela Procedencia", "Grado Escolar", "Teléfono","Edad"},0
-        ) {
+        )
+         {
         @Override
             public boolean isCellEditable(int row, int column) {
                 return false; 
@@ -136,28 +188,42 @@ public class MenuAlumnos extends javax.swing.JPanel {
                 };
             model.addRow(fila);
         }
+        tablaAlumnos.setModel(model);
+        
         tablaAlumnos.setRowSelectionAllowed(true);
-        tablaAlumnos.setColumnSelectionAllowed(false);
-        tablaAlumnos.setCellSelectionEnabled(false);
+        tablaAlumnos.setColumnSelectionAllowed(false);  
         tablaAlumnos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablaAlumnos.getTableHeader().setReorderingAllowed(false);
         tablaAlumnos.getTableHeader().setResizingAllowed(false);
-        tablaAlumnos.setModel(model);
-        
+        tablaAlumnos.setSelectionBackground(Color.CYAN);
+        tablaAlumnos.setSelectionForeground(Color.BLACK);
+
     }
     
-    public void filtrarPorID() {
-        String texto = txtBuscarId.getText().trim();
+    
+    public void setTearAlumno(int index){
+        int filaModelo = tablaAlumnos.convertRowIndexToModel(index);
         DefaultTableModel model = (DefaultTableModel) tablaAlumnos.getModel();
+        int id = (int) model.getValueAt(filaModelo, 0); 
+        String nombre = (String) model.getValueAt(filaModelo, 1);
+        String apellidoPaterno = (String) model.getValueAt(filaModelo, 2);
+        String apellidoMaterno = (String) model.getValueAt(filaModelo, 3);
+        String escuela = (String) model.getValueAt(filaModelo, 4);
+        String grado = (String) model.getValueAt(filaModelo, 5);
+        int telefono = (int) model.getValueAt(filaModelo, 6);
+        int edad = (int) model.getValueAt(filaModelo, 7);
         
-        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-        tablaAlumnos.setRowSorter(sorter);
-        if (texto.isEmpty()) {
-            sorter.setRowFilter(null);
-        } else {
-            sorter.setRowFilter(RowFilter.regexFilter("^" + texto + "$", 0));
-        }
-        
+        AlumnoDTO alumnoSeleccionado = new AlumnoDTO();
+        alumnoSeleccionado.setId(id);
+        alumnoSeleccionado.setNombre(nombre);
+        alumnoSeleccionado.setApellidoPaterno(apellidoPaterno);
+        alumnoSeleccionado.setApellidoMaterno(apellidoMaterno);
+        alumnoSeleccionado.setEscuelaProcedencia(escuela);
+        alumnoSeleccionado.setGradoEscolar(grado);
+        alumnoSeleccionado.setTelefono(telefono);
+        alumnoSeleccionado.setEdad(edad);
+        System.out.println(alumnoSeleccionado.toString());
+        control.setAlumno(alumnoSeleccionado);
     }
     public void valoresDefault(){
         CargarTabla();
@@ -178,5 +244,18 @@ public class MenuAlumnos extends javax.swing.JPanel {
             }
         });
      
+    }
+    public void filtrarPorID() {
+        String texto = txtBuscarId.getText().trim();
+        DefaultTableModel model = (DefaultTableModel) tablaAlumnos.getModel();
+        
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        tablaAlumnos.setRowSorter(sorter);
+        if (texto.isEmpty()) {
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter("^" + texto + "$", 0));
+
+        }   
     }
 }

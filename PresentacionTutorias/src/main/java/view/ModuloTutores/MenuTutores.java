@@ -4,8 +4,11 @@
  */
 package view.ModuloTutores;
 
+import DTOs.TutorDTO;
 import Dominio.Tutor;
 import com.mycompany.presentaciontutorias.Aplicacion;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentListener;
@@ -22,8 +25,8 @@ public class MenuTutores extends javax.swing.JPanel {
      * Creates new form MenuTutores
      */
     public MenuTutores(Aplicacion control) {
-        this.control = control;
         initComponents();
+        this.control = control;
         valoresDefault();
         
     }
@@ -44,22 +47,29 @@ public class MenuTutores extends javax.swing.JPanel {
         BtnEliminar1 = new javax.swing.JButton();
         BtnAgregar = new javax.swing.JButton();
         txtBuscarId = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
+        setMaximumSize(new java.awt.Dimension(900, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setEnabled(false);
 
         tablaTutores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Id", "Nombre", "Especialidad", "E-mail", "Telefono", "Disponibilidad"
+
             }
         ));
+        tablaTutores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaTutoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaTutores);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 830, -1));
@@ -74,6 +84,11 @@ public class MenuTutores extends javax.swing.JPanel {
         BtnActualizar.setForeground(new java.awt.Color(204, 204, 204));
         BtnActualizar.setText("Actualizar");
         BtnActualizar.setEnabled(false);
+        BtnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnActualizarMouseClicked(evt);
+            }
+        });
         add(BtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 570, -1, -1));
 
         BtnEliminar1.setBackground(new java.awt.Color(0, 0, 0));
@@ -98,6 +113,15 @@ public class MenuTutores extends javax.swing.JPanel {
         txtBuscarId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtBuscarId.setEnabled(false);
         add(txtBuscarId, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 200, -1));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton1.setText("Limpiar Seleccion");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 520, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarMouseClicked
@@ -105,11 +129,36 @@ public class MenuTutores extends javax.swing.JPanel {
         control.mostrarAgregarTutor();
     }//GEN-LAST:event_BtnAgregarMouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        tablaTutores.clearSelection();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void tablaTutoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTutoresMouseClicked
+        // TODO add your handling code here:
+        setTearTutor(tablaTutores.getSelectedRow());
+    }//GEN-LAST:event_tablaTutoresMouseClicked
+
+    private void BtnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnActualizarMouseClicked
+        // TODO add your handling code here:
+        if(tablaTutores.getSelectedRow() != -1 ){
+            control.mostrarActualizarTutor();
+        }else{
+            JOptionPane.showMessageDialog(
+                null,
+                "Seleccione a un tutor antes de querer actualizarlo",
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }//GEN-LAST:event_BtnActualizarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnActualizar;
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnEliminar1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaTutores;
@@ -137,17 +186,20 @@ public class MenuTutores extends javax.swing.JPanel {
                 tutor.getEspecialidad(),
                 tutor.getEmail(),
                 tutor.getTelefono(),
-                ""+tutor.getInicio() +"-" + tutor.getFin()
+                tutor.getDisponibilidad()
                 };
             model.addRow(fila);
         }
+        tablaTutores.setModel(model);
         tablaTutores.setRowSelectionAllowed(true);
         tablaTutores.setColumnSelectionAllowed(false);
-        tablaTutores.setCellSelectionEnabled(false);
         tablaTutores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablaTutores.getTableHeader().setReorderingAllowed(false);
         tablaTutores.getTableHeader().setResizingAllowed(false);
-        tablaTutores.setModel(model);
+        
+        tablaTutores.setSelectionBackground(Color.CYAN);
+        tablaTutores.setSelectionForeground(Color.BLACK);
+        
     }
     
     public void filtrarPorID() {
@@ -164,7 +216,7 @@ public class MenuTutores extends javax.swing.JPanel {
     public void valoresDefault(){
         CargarTabla();
         txtBuscarId.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
+        @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 filtrarPorID();
             }
@@ -181,5 +233,25 @@ public class MenuTutores extends javax.swing.JPanel {
         });
     }
     
+    public void setTearTutor(int index){
+        int filaModelo = tablaTutores.convertRowIndexToModel(index);
+        DefaultTableModel model = (DefaultTableModel) tablaTutores.getModel();
+        int id = (int) model.getValueAt(filaModelo, 0); 
+        String nombre = (String) model.getValueAt(filaModelo, 1);
+        String especialidad = (String) model.getValueAt(filaModelo, 2);
+        String email = (String) model.getValueAt(filaModelo, 3);
+        String telefono = (String) model.getValueAt(filaModelo, 4);
+        String disponibilidad = (String) model.getValueAt(filaModelo, 5);
+        
+        TutorDTO tutorDTO = new TutorDTO();
+        tutorDTO.setId(id);
+        tutorDTO.setNombre(nombre);
+        tutorDTO.setEmail(email);
+        tutorDTO.setEspecialidad(especialidad);
+        tutorDTO.setTelefono(telefono);
+        tutorDTO.setDisponibilidad(disponibilidad);
+        System.out.println("Tutor seteado a control--" + tutorDTO.toString());
+        control.setTutor(tutorDTO);
+    }
 
 }

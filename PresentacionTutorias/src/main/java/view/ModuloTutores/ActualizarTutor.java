@@ -4,8 +4,8 @@
  */
 package view.ModuloTutores;
 
+import DTOs.TutorDTO;
 import com.mycompany.presentaciontutorias.Aplicacion;
-import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.Date;
@@ -16,14 +16,16 @@ import javax.swing.SpinnerDateModel;
  *
  * @author HP
  */
-public class AgregarTutor extends javax.swing.JPanel {
-private Aplicacion control;
+public class ActualizarTutor extends javax.swing.JPanel {
+    private Aplicacion control;
+    private TutorDTO tutor;
     /**
-     * Creates new form AgregarTutor
+     * Creates new form ActualizarTutor
      */
-    public AgregarTutor(Aplicacion control) {
+    public ActualizarTutor(Aplicacion control) {
         this.control = control;
-        initComponents();
+        tutor=control.getTutorTemporal();
+        initComponents();       
         valoresDefault();
     }
 
@@ -38,52 +40,73 @@ private Aplicacion control;
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        campoTelefono = new javax.swing.JTextField();
-        campoNombre = new javax.swing.JTextField();
         campoEspecialidad = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        BtnCancelar = new javax.swing.JButton();
-        BtnConfirmar = new javax.swing.JButton();
-        SpinnerFin = new javax.swing.JSpinner();
-        SpinnerInicio = new javax.swing.JSpinner();
-        jLabel6 = new javax.swing.JLabel();
+        campoNombre = new javax.swing.JTextField();
+        campoEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        campoEmail = new javax.swing.JTextField();
+        campoTelefono = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        SpinnerInicio = new javax.swing.JSpinner();
+        SpinnerFin = new javax.swing.JSpinner();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        BtnCancelar = new javax.swing.JButton();
+        BtnConfirmar = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Disponibilidad");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, -1));
+        jLabel1.setText("Especialidad");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 160, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("Nombre:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("E-mail:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        jLabel2.setText("Actualizar Tutor");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 190, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setText("Especialidad:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
-
-        campoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 240, -1));
-
-        campoNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 320, -1));
+        jLabel4.setText("E-mail");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         campoEspecialidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(campoEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 240, -1));
+        add(campoEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 200, 250, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel5.setText("Agregar Tutor");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 240, 70));
+        campoNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 480, -1));
+
+        campoEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        add(campoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 210, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel7.setText("Fin");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel8.setText("Telefono:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 120, -1));
+
+        campoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 140, 190, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setText("Nombre(s):");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+
+        SpinnerInicio.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.HOUR));
+        add(SpinnerInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, -1, -1));
+
+        SpinnerFin.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.HOUR));
+        add(SpinnerFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel9.setText("Disponibilidad");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel10.setText("Inicio");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
 
         BtnCancelar.setBackground(new java.awt.Color(204, 204, 204));
         BtnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -93,44 +116,22 @@ private Aplicacion control;
                 BtnCancelarMouseClicked(evt);
             }
         });
-        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 670, -1, -1));
+        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
 
         BtnConfirmar.setBackground(new java.awt.Color(0, 0, 0));
         BtnConfirmar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BtnConfirmar.setForeground(new java.awt.Color(204, 204, 204));
-        BtnConfirmar.setText("Confirmar");
+        BtnConfirmar.setText("Continuar");
         BtnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnConfirmarMouseClicked(evt);
             }
         });
-        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 670, -1, -1));
+        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, -1, -1));
 
-        SpinnerFin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        SpinnerFin.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1759119315205L), null, null, java.util.Calendar.HOUR));
-        add(SpinnerFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, -1, -1));
-
-        SpinnerInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        SpinnerInicio.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1759119315205L), null, null, java.util.Calendar.HOUR));
-        add(SpinnerInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel6.setText("Telefono:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel7.setText("Inicio:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel8.setText("Fin:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 520, -1, -1));
-
-        campoEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(campoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 180, -1));
-
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@gmail.com", "@outlook.es", "@hotmail.com" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelarMouseClicked
@@ -140,8 +141,8 @@ private Aplicacion control;
 
     private void BtnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConfirmarMouseClicked
         // TODO add your handling code here:
-        control.confirmarTutor(campoNombre.getText(),campoEmail.getText() + jComboBox1.getSelectedItem(),campoEspecialidad.getText(),campoTelefono.getText(),(Date)SpinnerInicio.getValue(),(Date)SpinnerFin.getValue());
-        
+        recopilarDatos();
+        control.mostrarResumenTutor();
     }//GEN-LAST:event_BtnConfirmarMouseClicked
 
 
@@ -156,17 +157,31 @@ private Aplicacion control;
     private javax.swing.JTextField campoTelefono;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 
-
+    public void recopilarDatos(){
+       tutor.setId(control.getTutorTemporal().getId());
+       tutor.setNombre(campoNombre.getText());
+       tutor.setEmail(campoEmail.getText() + jComboBox1.getSelectedItem());
+       tutor.setEspecialidad(campoEspecialidad.getText());
+       tutor.setTelefono(campoTelefono.getText());
+       tutor.setInicio((Date)SpinnerInicio.getValue());
+       tutor.setFin((Date)SpinnerFin.getValue());
+       String disponibilidad = "" + tutor.getInicio().getHours()+ ":" + tutor.getInicio().getMinutes()+"--"+ tutor.getFin().getHours()+":" + tutor.getFin().getMinutes()+"";
+       tutor.setDisponibilidad(disponibilidad);
+       control.setTutor(tutor); 
+      
+    }
+    
     public void valoresDefault(){
+        llenarTexfield();
         SpinnerDateModel model = new SpinnerDateModel();
         SpinnerDateModel model1 = new SpinnerDateModel();
         SpinnerInicio.setModel(model);
@@ -186,7 +201,7 @@ private Aplicacion control;
            }
        }
     });
-        campoTelefono.addKeyListener(new java.awt.event.KeyAdapter()
+       campoTelefono.addKeyListener(new java.awt.event.KeyAdapter()
        {
        @Override
        public void keyTyped(KeyEvent e){
@@ -203,5 +218,12 @@ private Aplicacion control;
        }
     });
     }
-
+    
+    public void llenarTexfield(){
+       System.out.println("tutor en ActualizarTutor---" + tutor.toString());
+       campoNombre.setText(tutor.getNombre());
+       campoEspecialidad.setText(tutor.getEspecialidad());
+       campoEmail.setText(tutor.getEmail());
+       campoTelefono.setText(tutor.getTelefono());
+   }
 }

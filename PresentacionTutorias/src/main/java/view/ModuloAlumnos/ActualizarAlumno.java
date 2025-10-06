@@ -6,6 +6,7 @@ package view.ModuloAlumnos;
 
 import DTOs.AlumnoDTO;
 import com.mycompany.presentaciontutorias.Aplicacion;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
@@ -13,17 +14,17 @@ import javax.swing.JOptionPane;
  *
  * @author HP
  */
-public class ResumenAlumno extends javax.swing.JPanel {
+public class ActualizarAlumno extends javax.swing.JPanel {
     private Aplicacion control;
     private AlumnoDTO alumno;
     /**
-     * Creates new form ResumenAlumno
+     * Creates new form ActualizarAlumno
      */
-    public ResumenAlumno(Aplicacion control) {
+    public ActualizarAlumno(Aplicacion control) {
         initComponents();
-        this.control= control;
-        this.alumno = control.getAlumnoTemporal();
-        llenarTexfield();
+        this.control = control;
+        alumno=control.getAlumnoTemporal();
+        valoresDefault();
     }
 
     /**
@@ -35,6 +36,7 @@ public class ResumenAlumno extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,7 +46,6 @@ public class ResumenAlumno extends javax.swing.JPanel {
         campoApellidoMaterno = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         campoApellidoPaterno = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         campoEdad = new javax.swing.JTextField();
         campoGradoEscolar = new javax.swing.JTextField();
@@ -55,65 +56,58 @@ public class ResumenAlumno extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setText("Actualizar Alumno");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Escuela Procedencia");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
+        jLabel1.setText("Escuela Procedencia:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 230, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Nombre(s):");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("Apellido Paterno:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("Apellido Materno:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         campoEscuelaProcedencia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoEscuelaProcedencia.setEnabled(false);
-        add(campoEscuelaProcedencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 290, -1));
+        add(campoEscuelaProcedencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 260, -1));
 
         campoNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoNombre.setEnabled(false);
-        add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 290, -1));
+        add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 290, -1));
 
         campoApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoApellidoMaterno.setEnabled(false);
-        add(campoApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 290, -1));
+        add(campoApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 290, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setText("Edad:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 70, -1));
 
         campoApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoApellidoPaterno.setEnabled(false);
-        add(campoApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 290, -1));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Actualizacion de Alumno");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
+        add(campoApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 250, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setText("Grado Escolar");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, -1, -1));
 
         campoEdad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoEdad.setEnabled(false);
-        add(campoEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 160, -1));
+        add(campoEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 130, -1));
 
         campoGradoEscolar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoGradoEscolar.setEnabled(false);
-        add(campoGradoEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 290, -1));
+        add(campoGradoEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, 290, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setText("Telefono:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 120, -1));
 
         campoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoTelefono.setEnabled(false);
-        add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, 290, -1));
+        add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 260, 260, -1));
 
         BtnCancelar.setBackground(new java.awt.Color(204, 204, 204));
         BtnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -123,18 +117,18 @@ public class ResumenAlumno extends javax.swing.JPanel {
                 BtnCancelarMouseClicked(evt);
             }
         });
-        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, -1, -1));
+        add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
 
         BtnConfirmar.setBackground(new java.awt.Color(0, 0, 0));
         BtnConfirmar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BtnConfirmar.setForeground(new java.awt.Color(204, 204, 204));
-        BtnConfirmar.setText("Confirmar");
+        BtnConfirmar.setText("Continuar");
         BtnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnConfirmarMouseClicked(evt);
             }
         });
-        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, -1, -1));
+        add(BtnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 390, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCancelarMouseClicked
@@ -144,24 +138,8 @@ public class ResumenAlumno extends javax.swing.JPanel {
 
     private void BtnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConfirmarMouseClicked
         // TODO add your handling code here:
-        Boolean confirmarAlumno = control.confirmarAlumno(alumno);
-        if (confirmarAlumno){
-            control.setAlumno(alumno);
-            JOptionPane.showMessageDialog(
-            null, 
-            "Alumno registrado con exito", 
-            "Alumno Registrado", 
-            JOptionPane.YES_OPTION
-        );
-        }else{
-           JOptionPane.showMessageDialog(
-            null, 
-            "Ocurrió un error al registrar el alumno.", 
-            "Error", 
-            JOptionPane.ERROR_MESSAGE
-        ); 
-        }
-
+        recopilarDatos();
+        control.mostrarResumenAlumnoActulizado();
     }//GEN-LAST:event_BtnConfirmarMouseClicked
 
 
@@ -185,7 +163,76 @@ public class ResumenAlumno extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 
-   public void llenarTexfield(){
+
+    public void recopilarDatos(){
+       alumno = new AlumnoDTO();
+       alumno.setId(control.getAlumnoTemporal().getId());
+       alumno.setNombre(campoNombre.getText());
+       alumno.setApellidoPaterno(campoApellidoPaterno.getText());
+       alumno.setApellidoMaterno(campoApellidoMaterno.getText());
+       alumno.setEdad(Integer.parseInt(campoEdad.getText()));
+       alumno.setTelefono(Integer.parseInt(campoTelefono.getText()));
+       alumno.setEscuelaProcedencia(campoEscuelaProcedencia.getText());
+       alumno.setGradoEscolar(campoGradoEscolar.getText());
+       control.setAlumno(alumno);
+       
+    }
+    
+    public void valoresDefault(){
+       llenarTexfield();
+       campoEdad.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           char c = e.getKeyChar();
+           if(!Character.isDigit(c)){
+               e.consume();
+               return;
+           }
+           if(campoEdad.getText().length() >= 3){
+               e.consume();
+           }
+       }
+    });
+       campoTelefono.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           char c = e.getKeyChar();
+           if(!Character.isDigit(c)){
+               e.consume();
+               Toolkit.getDefaultToolkit().beep();
+           }
+           if(campoTelefono.getText().length() >= 10){
+               e.consume();
+               Toolkit.getDefaultToolkit().beep();
+               
+           }
+       }
+    });
+        campoGradoEscolar.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           if(campoGradoEscolar.getText().length() >= 50){
+               e.consume();
+               Toolkit.getDefaultToolkit().beep();
+               
+           }
+       }
+    });
+       campoEscuelaProcedencia.addKeyListener(new java.awt.event.KeyAdapter()
+       {
+       @Override
+       public void keyTyped(KeyEvent e){
+           if(campoEscuelaProcedencia.getText().length() >= 50){
+               e.consume();
+               Toolkit.getDefaultToolkit().beep();
+           }
+       }
+    });
+   }
+    public void llenarTexfield(){
        campoNombre.setText(alumno.getNombre());
        campoApellidoPaterno.setText(alumno.getApellidoPaterno());
        campoApellidoMaterno.setText(alumno.getApellidoMaterno());

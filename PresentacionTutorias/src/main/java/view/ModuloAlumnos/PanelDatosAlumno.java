@@ -6,6 +6,7 @@ package view.ModuloAlumnos;
 
 import DTOs.AlumnoDTO;
 import com.mycompany.presentaciontutorias.Aplicacion;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 /**
@@ -19,9 +20,10 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
      * Creates new form PanelInformarcionAlumno
      */
     public PanelDatosAlumno(Aplicacion control) {
-        this.control = control;
         initComponents();
+        this.control = control;
         this.alumno = control.getAlumnoTemporal();
+        valoresDefault();
     }
 
     /**
@@ -110,11 +112,11 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
         // TODO add your handling code here:
         //falta logica de Armar el objeto y enviarlo a la App y de ahi a controller, 
         
-        alumno.setTelefono(Integer.parseInt(campoEdad.getText()));
-        alumno.setEdad(Integer.parseInt(campoTelefono.getText()));
+        alumno.setTelefono(Integer.parseInt(campoTelefono.getText()));
+        alumno.setEdad(Integer.parseInt(campoEdad.getText()));
         alumno.setEscuelaProcedencia(escuela.getText());
         alumno.setGradoEscolar(gradoEscolar.getText());
-        
+        control.setAlumno(alumno);
         control.mostrarResumenAlumno();
     }//GEN-LAST:event_btnContinuarMouseClicked
 
@@ -133,7 +135,9 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 
+    
     public void valoresDefault(){
+       
        campoEdad.addKeyListener(new java.awt.event.KeyAdapter()
        {
        @Override
@@ -141,9 +145,12 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
            char c = e.getKeyChar();
            if(!Character.isDigit(c)){
                e.consume();
+               Toolkit.getDefaultToolkit().beep();
+               return;
            }
            if(campoEdad.getText().length() >= 3){
                e.consume();
+               Toolkit.getDefaultToolkit().beep();
            }
        }
     });
@@ -154,9 +161,13 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
            char c = e.getKeyChar();
            if(!Character.isDigit(c)){
                e.consume();
+               Toolkit.getDefaultToolkit().beep();
+               return;
            }
-           if(campoTelefono.getText().length() >= 10){
+           if(campoTelefono.getText().length() >= 9){
                e.consume();
+               Toolkit.getDefaultToolkit().beep();
+               
            }
        }
     });
@@ -166,6 +177,8 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
        public void keyTyped(KeyEvent e){
            if(gradoEscolar.getText().length() >= 50){
                e.consume();
+               Toolkit.getDefaultToolkit().beep();
+               
            }
        }
     });
@@ -175,6 +188,7 @@ public class PanelDatosAlumno extends javax.swing.JPanel {
        public void keyTyped(KeyEvent e){
            if(escuela.getText().length() >= 50){
                e.consume();
+               Toolkit.getDefaultToolkit().beep();
            }
        }
     });

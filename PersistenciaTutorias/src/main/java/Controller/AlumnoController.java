@@ -109,7 +109,7 @@ public class AlumnoController {
             return false; 
         }
         if (edad <= 0){
-           System.err.println("Fecha de nacimiento no puede estar vacio");
+           System.err.println("La edad no puede ser menor que 0");
             return false; 
         }
         

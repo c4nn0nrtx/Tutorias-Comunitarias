@@ -114,6 +114,7 @@ public class AlumnoDAO implements IAlumnoDAO {
             ps.setString(5, alumno.getEscuela_Procedencia());
             ps.setString(6, alumno.getGrado_Escolar());
             ps.setInt(7, alumno.getEdad());
+            ps.setInt(8, alumno.getId());
 
             return ps.executeUpdate() > 0;
 
