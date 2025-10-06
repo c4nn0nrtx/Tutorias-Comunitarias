@@ -25,7 +25,8 @@ public class TutorBO implements ITutorBO{
     @Override
     public TutorDTO registrarTutor(TutorDTO tutor) throws NegocioException {
         try{
-            if(tutorDAO.agregarTutor(tutor.getNombre(), tutor.getEmail(),tutor.getEspecialidad(), tutor.getTelefono(), tutor.getInicio(), tutor.getFin())){
+            String disponibilidadd =  "" + tutor.getInicio().getHours()+":"+tutor.getInicio().getMinutes() +"--"+ tutor.getFin().getHours()+":"+tutor.getFin().getMinutes();
+            if(tutorDAO.agregarTutor(tutor.getNombre(), tutor.getEmail(),tutor.getEspecialidad(), tutor.getTelefono(), tutor.getInicio(), tutor.getFin(), disponibilidadd)){
                 return tutor;
             }else{
                 throw new NegocioException("Error al agregar al Tutor");
@@ -55,7 +56,10 @@ public class TutorBO implements ITutorBO{
                   tutor.getNombre(),
                   tutor.getEmail(),
                   tutor.getEspecialidad(), 
-                  tutor.getTelefono()
+                  tutor.getTelefono(),
+                  tutor.getInicio(),
+                  tutor.getFin(),
+                  tutor.getDisponibilidad()
           ); 
 
         return null;

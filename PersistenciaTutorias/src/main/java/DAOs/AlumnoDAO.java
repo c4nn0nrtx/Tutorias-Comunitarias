@@ -24,15 +24,16 @@ public class AlumnoDAO implements IAlumnoDAO {
 
     @Override
     public boolean insertar(Alumno alumno) {
-        String sql = "INSERT INTO Alumno(nombre, apellidoPaterno, apellidoMaterno, telefono, escuela_Procedencia, grado_Escolar) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Estudiante(nombre, apellidoPaterno, apellidoMaterno, telefono, escuela_Procedencia, grado_Escolar, edad) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (
             Connection con = ConexionDB.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, alumno.getNombre());
-            ps.setString(3, alumno.getApellidoPaterno());
-            ps.setString(2, alumno.getApellidoMaterno());
-            ps.setString(4, alumno.getTelefono());
+            ps.setString(2, alumno.getApellidoPaterno());
+            ps.setString(3, alumno.getApellidoMaterno());
+            ps.setInt(4, alumno.getTelefono());
             ps.setString(5, alumno.getEscuela_Procedencia());
             ps.setString(6, alumno.getGrado_Escolar());
+            ps.setInt(7, alumno.getEdad());
 
             return ps.executeUpdate() > 0;
 
@@ -44,7 +45,7 @@ public class AlumnoDAO implements IAlumnoDAO {
 
     @Override
     public Alumno obtenerPorId(int idAlumno) {
-        String sql = "SELECT * FROM Alumno WHERE idAlumno = ?";
+        String sql = "SELECT * FROM Estudiante WHERE id_estudiante = ?";
         Alumno alumno = null;
 
         try (
@@ -54,13 +55,14 @@ public class AlumnoDAO implements IAlumnoDAO {
 
             if (rs.next()) {
                 alumno = new Alumno();
-                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setIdAlumno(rs.getInt("id_estudiante"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setApellidoPaterno(rs.getString("apellidoPaterno"));
                 alumno.setApellidoMaterno(rs.getString("apellidoMaterno"));
-                alumno.setTelefono(rs.getString("telefono"));
+                alumno.setTelefono(rs.getInt("telefono"));
                 alumno.setEscuela_Procedencia(rs.getString("escuela_Procedencia"));
                 alumno.setGrado_Escolar(rs.getString("grado_Escolar"));
+                alumno.setEdad(rs.getInt("edad"));
                 return alumno;
 
             }
@@ -72,7 +74,7 @@ public class AlumnoDAO implements IAlumnoDAO {
 
     @Override
     public List<Alumno> obtenerTodos() {
-        String sql = "SELECT * FROM Alumno";
+        String sql = "SELECT * FROM Estudiante";
         List<Alumno> lista = new ArrayList<>();   
         try(Connection con = ConexionDB.getConnection(); 
             PreparedStatement ps = con.prepareStatement(sql);
@@ -80,17 +82,19 @@ public class AlumnoDAO implements IAlumnoDAO {
             
             while(rs.next()){
                 Alumno alumno = new Alumno();
-                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setIdAlumno(rs.getInt("id_estudiante"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setApellidoPaterno(rs.getString("apellidoPaterno"));
                 alumno.setApellidoMaterno(rs.getString("apellidoMaterno"));
-                alumno.setTelefono(rs.getString("telefono"));
+                alumno.setTelefono(rs.getInt("telefono"));
                 alumno.setEscuela_Procedencia(rs.getString("escuela_Procedencia"));
                 alumno.setGrado_Escolar(rs.getString("grado_Escolar"));
+                alumno.setEdad(rs.getInt("edad"));
                 lista.add(alumno);
             }
             
         } catch (SQLException ex) {
+            ex.printStackTrace(); 
             System.err.println("Error al obtener la lista de alumnos");
         }
         return lista;
@@ -99,16 +103,18 @@ public class AlumnoDAO implements IAlumnoDAO {
 
     @Override
     public boolean actualizar(Alumno alumno) {
-        String sql = "UPDATE Alumno SET nombre = ?, apellidoPaterno = ?, apellidoMaterno = ?, telefono = ?, escuela_Procedencia = ?, grado_Escolar = ? WHERE idAlumno = ?";
+        String sql = "UPDATE Estudiante SET nombre = ?, apellidoPaterno = ?, apellidoMaterno = ?, telefono = ?, escuela_Procedencia = ?, grado_Escolar = ?, edad = ? WHERE id_estudiante = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, alumno.getNombre());
             ps.setString(3, alumno.getApellidoPaterno());
             ps.setString(2, alumno.getApellidoMaterno());
-            ps.setString(4, alumno.getTelefono());
+            ps.setInt(4, alumno.getTelefono());
             ps.setString(5, alumno.getEscuela_Procedencia());
             ps.setString(6, alumno.getGrado_Escolar());
+            ps.setInt(7, alumno.getEdad());
+            ps.setInt(8, alumno.getId());
 
             return ps.executeUpdate() > 0;
 
@@ -122,7 +128,7 @@ public class AlumnoDAO implements IAlumnoDAO {
     @Override
     public boolean eliminar(int idAlumno) {
     
-        String sql = "DELETE FROM Alumno WHERE idAlumno = ?";
+        String sql = "DELETE FROM Estudiante WHERE id_estudiante = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 

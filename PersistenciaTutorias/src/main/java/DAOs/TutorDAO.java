@@ -21,7 +21,7 @@ public class TutorDAO implements ITutorDAO {
 
     @Override
     public boolean insertar(Tutor tutor) {
-        String sql = "INSERT INTO Tutores(nombre, email, especialidad, telefono,inicio, fin) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Tutores(nombre, email, especialidad, telefono,inicio, fin, disponibilidad) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (
             Connection con = ConexionDB.getConnection(); 
             PreparedStatement ps = con.prepareStatement(sql)) {
@@ -31,6 +31,7 @@ public class TutorDAO implements ITutorDAO {
             ps.setString(4, tutor.getTelefono());
             ps.setInt(5, tutor.getInicio());
             ps.setInt(6, tutor.getFin());
+            ps.setString(7, tutor.getDisponibilidad());
 
             return ps.executeUpdate() > 0;
 
@@ -54,11 +55,13 @@ public class TutorDAO implements ITutorDAO {
 
             if (rs.next()) {
                 tutor = new Tutor();
-                tutor.setIdTutor(rs.getLong("id_Tutor"));
+                tutor.setIdTutor(rs.getInt("id_Tutor"));
                 tutor.setNombre(rs.getString("nombre"));
                 tutor.setEmail(rs.getString("email"));
                 tutor.setEspecialidad(rs.getString("especialidad"));
                 tutor.setTelefono(rs.getString("telefono"));
+                tutor.setEspecialidad(rs.getString("especialidad"));
+                tutor.setDisponibilidad(rs.getString("disponibilidad"));
 
                 return tutor;
 
@@ -78,11 +81,12 @@ public class TutorDAO implements ITutorDAO {
 
             while (rs.next()) {
                 Tutor tutor = new Tutor();
-                tutor.setIdTutor(rs.getLong("id_Tutor"));
+                tutor.setIdTutor(rs.getInt("id_Tutor"));
                 tutor.setNombre(rs.getString("nombre"));
                 tutor.setEmail(rs.getString("email"));
                 tutor.setEspecialidad(rs.getString("especialidad"));
                 tutor.setTelefono(rs.getString("telefono"));
+                tutor.setDisponibilidad(rs.getString("disponibilidad"));
                 lista.add(tutor);
             }
 
@@ -95,7 +99,7 @@ public class TutorDAO implements ITutorDAO {
 
     @Override
     public boolean actualizar(Tutor tutor) {
-        String sql = "UPDATE Tutores SET nombre = ?, email = ?, especialidad = ?, telefono = ? WHERE idTutor = ?";
+        String sql = "UPDATE Tutores SET nombre = ?, email = ?, especialidad = ?, telefono = ?, disponibilidad = ? WHERE id_Tutor = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -103,6 +107,8 @@ public class TutorDAO implements ITutorDAO {
             ps.setString(2, tutor.getEmail());
             ps.setString(3, tutor.getEspecialidad());
             ps.setString(4, tutor.getTelefono());
+            ps.setString(5, tutor.getDisponibilidad());
+            ps.setInt(6, tutor.getId());
 
             return ps.executeUpdate() > 0;
 
@@ -114,7 +120,7 @@ public class TutorDAO implements ITutorDAO {
 
     @Override
     public boolean eliminar(Long idTutor) {
-        String sql = "DELETE FROM Tutor WHERE id_Tutor = ?";
+        String sql = "DELETE FROM Tutores WHERE id_Tutor = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 

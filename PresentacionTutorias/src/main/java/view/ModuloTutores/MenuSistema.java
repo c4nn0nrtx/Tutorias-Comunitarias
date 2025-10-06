@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package views;
+package view.ModuloTutores;
 
 import com.mycompany.presentaciontutorias.Aplicacion;
 import javax.swing.JPanel;
@@ -18,6 +18,7 @@ public class MenuSistema extends javax.swing.JFrame {
      */
     public MenuSistema(Aplicacion control) {
         this.control = control;
+        
         initComponents();
     }
 
@@ -44,7 +45,6 @@ public class MenuSistema extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("¡Bienvenido!");
-        jPanel2.add(jLabel1);
 
         jMenuBar1.setMaximumSize(new java.awt.Dimension(1200, 800));
 
@@ -57,6 +57,11 @@ public class MenuSistema extends javax.swing.JFrame {
         jMenuBar1.add(menuTutorias);
 
         menuAlumnos.setText("Administrar Alumnos");
+        menuAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuAlumnosMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuAlumnos);
 
         menuMaterias.setText("Administrar Materias");
@@ -72,14 +77,18 @@ public class MenuSistema extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(415, 415, 415))
+                .addContainerGap(394, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(582, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(592, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,6 +98,11 @@ public class MenuSistema extends javax.swing.JFrame {
         // TODO add your handling code here:
         control.mostrarMenuTutores();
     }//GEN-LAST:event_menuTutoriasMouseClicked
+
+    private void menuAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAlumnosMouseClicked
+        // TODO add your handling code here:
+        control.mostrarMenuAlumnos();
+    }//GEN-LAST:event_menuAlumnosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

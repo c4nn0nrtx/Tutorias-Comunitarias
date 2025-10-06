@@ -24,7 +24,7 @@ public class TutorController {
     //VALIDACIONEs
     
     //Inserrt
-    public boolean agregarTutor(String nombre, String email, String especialidad, String telefono, Date inicio, Date fin){
+    public boolean agregarTutor(String nombre, String email, String especialidad, String telefono, Date inicio, Date fin, String disponibilidad){
         if (nombre == null || nombre.trim().isEmpty()) {
             System.err.println("El nombre del tutor no puede estar vacio");
             return false;
@@ -34,7 +34,11 @@ public class TutorController {
             return false;
         }
         if (especialidad == null || especialidad.trim().isEmpty()) {
-            System.err.println("La especialidad materno del tutor no puede estar vacio");
+            System.err.println("La especialidad del tutor no puede estar vacio");
+            return false;
+        }
+        if (disponibilidad == null || disponibilidad.trim().isEmpty()) {
+            System.err.println("La disponibilidad del tutor no puede estar vacio");
             return false;
         }
         if (telefono == null) {
@@ -48,6 +52,7 @@ public class TutorController {
         tutor.setTelefono(telefono.trim());
         tutor.setInicio(inicio.getHours());
         tutor.setFin(fin.getHours());
+        tutor.setDisponibilidad(disponibilidad);
 
         return tutorDAO.insertar(tutor);
     }
@@ -67,7 +72,7 @@ public class TutorController {
     }
     
     //actualizar
-    public boolean actualizarTutor(Long idTutor, String nombre, String email, String especialidad, String telefono){
+    public boolean actualizarTutor(int idTutor, String nombre, String email, String especialidad, String telefono, Date inicio, Date fin, String Disponibilidad){
         if (idTutor <= 0) {
             System.out.println("ID invalido");
             return false;
@@ -82,6 +87,10 @@ public class TutorController {
         }
         if (especialidad == null || especialidad.trim().isEmpty()) {
             System.err.println("La especialidad del tutor no puede estar vacio");
+            return false;
+        }
+        if (Disponibilidad == null || Disponibilidad.trim().isEmpty()) {
+            System.err.println("La Disponibilidad del tutor no puede estar vacio");
             return false;
         }
         if (telefono == null || telefono.equals("")) {

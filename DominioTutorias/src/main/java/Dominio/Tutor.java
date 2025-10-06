@@ -5,19 +5,19 @@
 
 package Dominio;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
  * @author $Luis Carlos Manjarrez Gonzalez
  */
 public class Tutor {
-    private Long id;
+    private int id;
     private String nombre, email, especialidad, telefono;
     private int inicio, fin;
     private String disponibilidad;
 
-    public Tutor(Long id, String nombre, String email, String especialidad, String telefono,int inicio, int fin, String disponibilidad) {
+    public Tutor(int id, String nombre, String email, String especialidad, String telefono,int inicio, int fin, String disponibilidad) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -31,11 +31,11 @@ public class Tutor {
     public Tutor() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setIdTutor(Long id) {
+    public void setIdTutor(int id) {
         this.id = id;
     }
 

@@ -5,18 +5,18 @@
 
 package DTOs;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
  * @author $Luis Carlos Manjarrez Gonzalez
  */
 public class TutorDTO {
-    private Long id;
-    private String nombre, email, especialidad, telefono;
+    private int id;
+    private String nombre, email, especialidad, telefono, disponibilidad;
     private Date inicio, fin;
 
-    public TutorDTO(Long id, String nombre, String email, String especialidad, String telefono, Date inicio, Date fin) {
+    public TutorDTO(int id, String nombre, String email, String especialidad, String telefono, Date inicio, Date fin) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -30,11 +30,11 @@ public class TutorDTO {
     public TutorDTO() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -86,10 +86,21 @@ public class TutorDTO {
         this.fin = fin;
     }
 
+    public String getDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public void setDisponibilidad(String disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
+
     @Override
     public String toString() {
-        return "TutorDTO{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", especialidad=" + especialidad + ", telefono=" + telefono + ", inicio=" + inicio + ", fin=" + fin + '}';
+        return "TutorDTO{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", especialidad=" + especialidad + ", telefono=" + telefono + ", disponibilidad=" + disponibilidad + ", inicio=" + inicio + ", fin=" + fin + '}';
     }
+    
+
+    
 
     
 }
