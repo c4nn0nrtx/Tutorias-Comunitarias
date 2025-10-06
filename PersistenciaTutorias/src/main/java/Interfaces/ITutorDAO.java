@@ -16,5 +16,5 @@ public interface ITutorDAO {
     Tutor obtenerPorId(Long idtutor);
     List<Tutor> obtenerTodos();
     boolean actualizar(Tutor tutor);
-    boolean eliminar(Long idtutor);
+    boolean eliminar(int idtutor);
 }

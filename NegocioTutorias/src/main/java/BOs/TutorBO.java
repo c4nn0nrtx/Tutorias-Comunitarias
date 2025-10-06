@@ -66,7 +66,7 @@ public class TutorBO implements ITutorBO{
     }
 
     @Override
-    public TutorDTO eliminarTutor(long id) throws NegocioException {
+    public TutorDTO eliminarTutor(int id) throws NegocioException {
         TutorDTO tutorEncontrado= null;
         if(buscarPorId(id)!= null){
             tutorEncontrado = buscarPorId(id);

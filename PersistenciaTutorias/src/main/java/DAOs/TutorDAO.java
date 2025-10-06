@@ -119,7 +119,7 @@ public class TutorDAO implements ITutorDAO {
     }
 
     @Override
-    public boolean eliminar(Long idTutor) {
+    public boolean eliminar(int idTutor) {
         String sql = "DELETE FROM Tutores WHERE id_Tutor = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

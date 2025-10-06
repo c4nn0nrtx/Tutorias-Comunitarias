@@ -91,6 +91,11 @@ public class MenuAlumnos extends javax.swing.JPanel {
         BtnEliminar1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BtnEliminar1.setForeground(new java.awt.Color(204, 204, 204));
         BtnEliminar1.setText("Eliminar");
+        BtnEliminar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnEliminar1MouseClicked(evt);
+            }
+        });
         add(BtnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, -1, -1));
 
         BtnAgregar.setBackground(new java.awt.Color(0, 0, 0));
@@ -149,6 +154,27 @@ public class MenuAlumnos extends javax.swing.JPanel {
         // TODO add your handling code here:
         tablaAlumnos.clearSelection();
     }//GEN-LAST:event_btnLimpiarMouseClicked
+
+    private void BtnEliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEliminar1MouseClicked
+        // TODO add your handling code here:
+        if(control.eliminarAlumno(control.consultarTodos().get(tablaAlumnos.getSelectedRow()).getId())){
+            JOptionPane.showMessageDialog(
+                null,
+                "El alumno fue eliminado correctamente",
+                "Exito",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+            control.mostrarMenuAlumnos();
+        }else{
+            JOptionPane.showMessageDialog(
+                null,
+                "No se puedo eliminar al alumno",
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+     
+    }//GEN-LAST:event_BtnEliminar1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -146,11 +146,11 @@ public class ResumenActualizar extends javax.swing.JPanel {
         // TODO add your handling code here:
         Boolean confirmarAlumno = control.actualizarAlumno(alumno);
         if (confirmarAlumno){
-            JOptionPane.showConfirmDialog(
+            JOptionPane.showMessageDialog(
                 null,
                 "Alumno Actualizado con exito",
                 "Alumno Actualizado",
-                JOptionPane.YES_OPTION
+                JOptionPane.INFORMATION_MESSAGE
             );
         }else{
             JOptionPane.showMessageDialog(

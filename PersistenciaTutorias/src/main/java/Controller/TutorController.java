@@ -103,12 +103,13 @@ public class TutorController {
         tutor.setEmail(email.trim());
         tutor.setEspecialidad(especialidad.trim());
         tutor.setTelefono(telefono.trim());
+        tutor.setDisponibilidad(Disponibilidad);
 
         return tutorDAO.actualizar(tutor);
     } 
     
     //eliminar
-    public boolean eliminarTutor(long idTutor){
+    public boolean eliminarTutor(int idTutor){
         if (idTutor <= 0) {
             System.err.println("ID invalido");
             return false;

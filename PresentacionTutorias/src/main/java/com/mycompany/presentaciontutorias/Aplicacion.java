@@ -1,9 +1,9 @@
+package com.mycompany.presentaciontutorias;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-package com.mycompany.presentaciontutorias;
 
 import Controller.AlumnoController;
 import Controller.TutorController;
@@ -106,10 +106,17 @@ public class Aplicacion {
             return true;
         }
         mostrarAgregarTutor();
-        return false;
-        
+        return false;  
     }
     
+    public boolean eliminarTutor(int id){
+        if(controlTutores.eliminarTutor(id)){
+            mostrarMenuTutores();
+            return true;
+        }
+        mostrarMenuTutores();
+        return false;  
+    }
     
     //Views
     public void mostrarAgregarTutor(){
@@ -195,5 +202,14 @@ public class Aplicacion {
         }
         mostrarActulizarAlumno();
         return false; 
+    }
+    
+    public boolean eliminarAlumno(int id){
+        if(controlAlumnos.eliminarAlumno(id)){
+            mostrarMenuTutores();
+            return true;
+        }
+        mostrarMenuTutores();
+        return false;  
     }
 }

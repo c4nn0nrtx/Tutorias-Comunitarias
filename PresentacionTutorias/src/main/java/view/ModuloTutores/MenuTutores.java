@@ -96,6 +96,11 @@ public class MenuTutores extends javax.swing.JPanel {
         BtnEliminar1.setForeground(new java.awt.Color(204, 204, 204));
         BtnEliminar1.setText("Eliminar");
         BtnEliminar1.setEnabled(false);
+        BtnEliminar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnEliminar1MouseClicked(evt);
+            }
+        });
         add(BtnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 570, -1, -1));
 
         BtnAgregar.setBackground(new java.awt.Color(0, 0, 0));
@@ -152,6 +157,26 @@ public class MenuTutores extends javax.swing.JPanel {
             );
         }
     }//GEN-LAST:event_BtnActualizarMouseClicked
+
+    private void BtnEliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEliminar1MouseClicked
+        // TODO add your handling code here:
+        if(control.eliminarTutor(control.consultarTodos().get(tablaTutores.getSelectedRow()).getId())){
+            JOptionPane.showMessageDialog(
+                null,
+                "El tutor fue eliminado correctamente",
+                "Exito",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+            control.mostrarMenuTutores();
+        }else{
+            JOptionPane.showMessageDialog(
+                null,
+                "No se puedo eliminar al Tutor",
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }//GEN-LAST:event_BtnEliminar1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
