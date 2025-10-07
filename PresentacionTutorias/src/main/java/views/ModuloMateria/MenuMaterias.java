@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package view.ModuloAlumnos;
+package views.ModuloMateria;
 
-import DTOs.AlumnoDTO;
-import Dominio.Alumno;
+import DTOs.MateriaDTO;
+import DTOs.TutorDTO;
+import Dominio.Materia;
 import com.mycompany.presentaciontutorias.Aplicacion;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -19,15 +20,14 @@ import javax.swing.table.TableRowSorter;
  *
  * @author HP
  */
-public class MenuAlumnos extends javax.swing.JPanel {
+public class MenuMaterias extends javax.swing.JPanel {
     private Aplicacion control;
     /**
-     * Creates new form MenuAdmin
+     * Creates new form AdministrarMaterias
      */
-    public MenuAlumnos(Aplicacion control) {
-        
-        initComponents();
+    public MenuMaterias(Aplicacion control) {
         this.control = control;
+        initComponents();
         valoresDefault();
     }
 
@@ -41,18 +41,19 @@ public class MenuAlumnos extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaAlumnos = new javax.swing.JTable();
+        tablaMaterias = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         BtnActualizar = new javax.swing.JButton();
         BtnEliminar1 = new javax.swing.JButton();
         BtnAgregar = new javax.swing.JButton();
         txtBuscarId = new javax.swing.JTextField();
-        btnLimpiar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        setMaximumSize(new java.awt.Dimension(900, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane1.setEnabled(false);
+
+        tablaMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -63,197 +64,181 @@ public class MenuAlumnos extends javax.swing.JPanel {
 
             }
         ));
-        tablaAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaAlumnosMouseClicked(evt);
+                tablaMateriasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaAlumnos);
+        jScrollPane1.setViewportView(tablaMaterias);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 950, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 830, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("Administrar Alumnos");
+        jLabel1.setText("Administrar Materias");
+        jLabel1.setEnabled(false);
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
         BtnActualizar.setBackground(new java.awt.Color(0, 0, 0));
         BtnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BtnActualizar.setForeground(new java.awt.Color(204, 204, 204));
         BtnActualizar.setText("Actualizar");
+        BtnActualizar.setEnabled(false);
         BtnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnActualizarMouseClicked(evt);
             }
         });
-        add(BtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 570, -1, -1));
+        add(BtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 570, -1, -1));
 
         BtnEliminar1.setBackground(new java.awt.Color(0, 0, 0));
         BtnEliminar1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BtnEliminar1.setForeground(new java.awt.Color(204, 204, 204));
         BtnEliminar1.setText("Eliminar");
+        BtnEliminar1.setEnabled(false);
         BtnEliminar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnEliminar1MouseClicked(evt);
             }
         });
-        add(BtnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, -1, -1));
+        add(BtnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 570, -1, -1));
 
         BtnAgregar.setBackground(new java.awt.Color(0, 0, 0));
         BtnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         BtnAgregar.setForeground(new java.awt.Color(204, 204, 204));
         BtnAgregar.setText("Agregar");
+        BtnAgregar.setEnabled(false);
         BtnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnAgregarMouseClicked(evt);
             }
         });
-        add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 570, -1, -1));
+        add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 570, -1, -1));
 
         txtBuscarId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtBuscarId.setEnabled(false);
         add(txtBuscarId, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 200, -1));
 
-        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnLimpiar.setText(" Limpiar Seleccion");
-        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton1.setText("Limpiar Seleccion");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLimpiarMouseClicked(evt);
+                jButton1MouseClicked(evt);
             }
         });
-        add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 530, 140, 30));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 520, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarMouseClicked
+    private void tablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMateriasMouseClicked
         // TODO add your handling code here:
-        control.mostrarIngresarNombreAlumnos();
-    }//GEN-LAST:event_BtnAgregarMouseClicked
-
-    private void tablaAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAlumnosMouseClicked
-        // TODO add your handling code here:
-        setTearAlumno(tablaAlumnos.getSelectedRow());
-        
-
-    }//GEN-LAST:event_tablaAlumnosMouseClicked
+        setMateria(tablaMaterias.getSelectedRow());
+    }//GEN-LAST:event_tablaMateriasMouseClicked
 
     private void BtnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnActualizarMouseClicked
         // TODO add your handling code here:
-        if(tablaAlumnos.getSelectedRow() != -1 ){
-            control.mostrarActulizarAlumno();
+        if(tablaMaterias.getSelectedRow() != -1 ){
+            control.mostrarActualizarMateria();
         }else{
             JOptionPane.showMessageDialog(
                 null,
-                "Seleccione a un alumno antes de querer actualizarlo",
+                "Seleccione una materia antes de querer actualizarla",
                 "Error",
                 JOptionPane.ERROR_MESSAGE
             );
         }
-        
     }//GEN-LAST:event_BtnActualizarMouseClicked
-
-    private void btnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseClicked
-        // TODO add your handling code here:
-        tablaAlumnos.clearSelection();
-    }//GEN-LAST:event_btnLimpiarMouseClicked
 
     private void BtnEliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEliminar1MouseClicked
         // TODO add your handling code here:
-        if(control.eliminarAlumno(control.getAlumnoTemporal().getId())){
+        if(control.eliminarMateria(control.getMateria().getId())){
             JOptionPane.showMessageDialog(
                 null,
-                "El alumno fue eliminado correctamente",
+                "La materia fue eliminada correctamente",
                 "Exito",
                 JOptionPane.INFORMATION_MESSAGE
             );
-            control.mostrarMenuAlumnos();
+            control.mostrarMenuTutores();
         }else{
             JOptionPane.showMessageDialog(
                 null,
-                "No se puedo eliminar al alumno",
+                "No se pudo eliminar la materia",
                 "Error",
                 JOptionPane.ERROR_MESSAGE
             );
         }
-     
     }//GEN-LAST:event_BtnEliminar1MouseClicked
+
+    private void BtnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarMouseClicked
+        // TODO add your handling code here:
+        control.mostrarAgregarMateria();
+    }//GEN-LAST:event_BtnAgregarMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        tablaMaterias.clearSelection();
+    }//GEN-LAST:event_jButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnActualizar;
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnEliminar1;
-    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaAlumnos;
+    private javax.swing.JTable tablaMaterias;
     private javax.swing.JTextField txtBuscarId;
     // End of variables declaration//GEN-END:variables
-    
-    public void CargarTabla(){
-        DefaultTableModel model = new DefaultTableModel(
-            new Object[]{"ID", "Nombre", "Apellido Paterno", "Apellido Materno", "Esceuela Procedencia", "Grado Escolar", "Teléfono","Edad"},0
-        )
-         {
-        @Override
-            public boolean isCellEditable(int row, int column) {
-                return false; 
-            }
-        };
+
+
+        public void CargarTabla(){
+            DefaultTableModel model = new DefaultTableModel(
+                new Object[]{"ID", "Nombre", "Nivel Educativo", "Descripcion"}, 0
+            ) {
+            @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
         model.setRowCount(0);
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-        tablaAlumnos.setRowSorter(sorter);
-        for (Alumno alumno : control.consultarAlumnos()) {
+
+        tablaMaterias.setRowSorter(sorter);
+        for (Materia materia : control.consultarMaterias()) {
             Object[] fila = new Object[]{
-                alumno.getId(),
-                alumno.getNombre(),
-                alumno.getApellidoPaterno(),
-                alumno.getApellidoMaterno(),
-                alumno.getEscuela_Procedencia(),
-                alumno.getGrado_Escolar(),
-                alumno.getTelefono(),
-                alumno.getEdad()
+                materia.getId(),
+                materia.getNombre(),
+                materia.getNivel_Educativo(),
+                materia.getDescripcion()
                 };
             model.addRow(fila);
         }
-        tablaAlumnos.setModel(model);
+        tablaMaterias.setModel(model);
+        tablaMaterias.setRowSelectionAllowed(true);
+        tablaMaterias.setColumnSelectionAllowed(false);
+        tablaMaterias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tablaMaterias.getTableHeader().setReorderingAllowed(false);
+        tablaMaterias.getTableHeader().setResizingAllowed(false);
         
-        tablaAlumnos.setRowSelectionAllowed(true);
-        tablaAlumnos.setColumnSelectionAllowed(false);  
-        tablaAlumnos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tablaAlumnos.getTableHeader().setReorderingAllowed(false);
-        tablaAlumnos.getTableHeader().setResizingAllowed(false);
-        tablaAlumnos.setSelectionBackground(Color.CYAN);
-        tablaAlumnos.setSelectionForeground(Color.BLACK);
-
+        tablaMaterias.setSelectionBackground(Color.CYAN);
+        tablaMaterias.setSelectionForeground(Color.BLACK);
+        
     }
     
-    
-    public void setTearAlumno(int index){
-        int filaModelo = tablaAlumnos.convertRowIndexToModel(index);
-        DefaultTableModel model = (DefaultTableModel) tablaAlumnos.getModel();
-        int id = (int) model.getValueAt(filaModelo, 0); 
-        String nombre = (String) model.getValueAt(filaModelo, 1);
-        String apellidoPaterno = (String) model.getValueAt(filaModelo, 2);
-        String apellidoMaterno = (String) model.getValueAt(filaModelo, 3);
-        String escuela = (String) model.getValueAt(filaModelo, 4);
-        String grado = (String) model.getValueAt(filaModelo, 5);
-        int telefono = (int) model.getValueAt(filaModelo, 6);
-        int edad = (int) model.getValueAt(filaModelo, 7);
-        
-        AlumnoDTO alumnoSeleccionado = new AlumnoDTO();
-        alumnoSeleccionado.setId(id);
-        alumnoSeleccionado.setNombre(nombre);
-        alumnoSeleccionado.setApellidoPaterno(apellidoPaterno);
-        alumnoSeleccionado.setApellidoMaterno(apellidoMaterno);
-        alumnoSeleccionado.setEscuelaProcedencia(escuela);
-        alumnoSeleccionado.setGradoEscolar(grado);
-        alumnoSeleccionado.setTelefono(telefono);
-        alumnoSeleccionado.setEdad(edad);
-        System.out.println(alumnoSeleccionado.toString());
-        control.setAlumno(alumnoSeleccionado);
-    }
+    public void filtrarPorID() {
+        String texto = txtBuscarId.getText().trim();
+        DefaultTableModel model = (DefaultTableModel) tablaMaterias.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        tablaMaterias.setRowSorter(sorter);
+        if (texto.isEmpty()) {
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter("^" + texto + "$", 0));
+        }
+}
     public void valoresDefault(){
         CargarTabla();
         txtBuscarId.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
+        @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 filtrarPorID();
             }
@@ -268,19 +253,22 @@ public class MenuAlumnos extends javax.swing.JPanel {
                 filtrarPorID();
             }
         });
-     
     }
-    public void filtrarPorID() {
-        String texto = txtBuscarId.getText().trim();
-        DefaultTableModel model = (DefaultTableModel) tablaAlumnos.getModel();
+    
+    public void setMateria(int index){
+        int filaModelo = tablaMaterias.convertRowIndexToModel(index);
+        DefaultTableModel model = (DefaultTableModel) tablaMaterias.getModel();
+        int id = (int) model.getValueAt(filaModelo, 0); 
+        String nombre = (String) model.getValueAt(filaModelo, 1);
+        String nivelEducativo = (String) model.getValueAt(filaModelo, 2);
+        String descripcion = (String) model.getValueAt(filaModelo, 3);
         
-        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-        tablaAlumnos.setRowSorter(sorter);
-        if (texto.isEmpty()) {
-            sorter.setRowFilter(null);
-        } else {
-            sorter.setRowFilter(RowFilter.regexFilter("^" + texto + "$", 0));
-
-        }   
+        MateriaDTO materia = new MateriaDTO();
+        materia.setId(id);
+        materia.setNombre(nombre);
+        materia.setNivelAcademico(nivelEducativo);
+        materia.setDescripcion(descripcion);
+  
+        control.setMateria(materia);
     }
 }

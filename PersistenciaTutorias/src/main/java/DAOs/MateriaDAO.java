@@ -21,7 +21,7 @@ public class MateriaDAO implements IMateriaDAO{
     @Override
     public boolean insertar(Materia materia) {
     
-        String sql = "INSERT INTO Alumno(nombre, nivel_Educativo, descripcion VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Materias(nombre, nivel_Educativo, descripcion) VALUES (?, ?, ?)";
         try (
             Connection con = ConexionDB.getConnection(); 
             PreparedStatement ps = con.prepareStatement(sql)) {
@@ -40,7 +40,7 @@ public class MateriaDAO implements IMateriaDAO{
 
     @Override
     public Materia obtenerPorId(int idMateria) {
-        String sql = "SELECT * FROM Materia WHERE idMateria = ?";
+        String sql = "SELECT * FROM Materias WHERE id_Materia = ?";
         Materia materia = null;
 
         try (
@@ -51,7 +51,8 @@ public class MateriaDAO implements IMateriaDAO{
 
             if (rs.next()) {
                 materia = new Materia();
-                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setIdMateria(rs.getInt("id_Materia"));
+                materia.setNombre(rs.getString("nombre"));
                 materia.setNivel_Educativo(rs.getString("nivel_Educativo"));
                 materia.setDescripcion(rs.getString("descripcion"));
                 return materia;
@@ -66,7 +67,7 @@ public class MateriaDAO implements IMateriaDAO{
 
     @Override
     public List<Materia> obtenerTodos() {
-        String sql = "SELECT * FROM Materia";
+        String sql = "SELECT * FROM Materias";
         List<Materia> lista = new ArrayList<>();   
         try(Connection con = ConexionDB.getConnection(); 
             PreparedStatement ps = con.prepareStatement(sql);
@@ -74,7 +75,8 @@ public class MateriaDAO implements IMateriaDAO{
             
             while(rs.next()){
                 Materia materia = new Materia();
-                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setIdMateria(rs.getInt("id_Materia"));
+                materia.setNombre(rs.getString("nombre"));
                 materia.setNivel_Educativo(rs.getString("nivel_Educativo"));
                 materia.setDescripcion(rs.getString("descripcion"));
                 lista.add(materia);
@@ -89,13 +91,14 @@ public class MateriaDAO implements IMateriaDAO{
 
     @Override
     public boolean actualizar(Materia materia) {
-        String sql = "UPDATE Materia SET nombre = ?, nivel_Educativo = ?, Descripcion = ? WHERE idMateria = ?";
+        String sql = "UPDATE Materias SET nombre = ?, nivel_Educativo = ?, Descripcion = ? WHERE id_Materia = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, materia.getNombre());
-            ps.setString(3, materia.getNivel_Educativo());
-            ps.setString(2, materia.getDescripcion());
+            ps.setString(2, materia.getNivel_Educativo());
+            ps.setString(3, materia.getDescripcion());
+            ps.setInt(4, materia.getId());
 
             return ps.executeUpdate() > 0;
 
@@ -109,7 +112,7 @@ public class MateriaDAO implements IMateriaDAO{
     @Override
     public boolean eliminar(int idMateria) {
         
-        String sql = "DELETE FROM Materia WHERE idMateria = ?";
+        String sql = "DELETE FROM Materias WHERE id_Materia = ?";
         try (Connection conn = ConexionDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 

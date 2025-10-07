@@ -18,7 +18,6 @@ public class MenuSistema extends javax.swing.JFrame {
      */
     public MenuSistema(Aplicacion control) {
         this.control = control;
-        
         initComponents();
     }
 
@@ -65,6 +64,11 @@ public class MenuSistema extends javax.swing.JFrame {
         jMenuBar1.add(menuAlumnos);
 
         menuMaterias.setText("Administrar Materias");
+        menuMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuMateriasMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuMaterias);
 
         menuSesiones.setText("Administrar Sesiones");
@@ -97,12 +101,20 @@ public class MenuSistema extends javax.swing.JFrame {
     private void menuTutoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTutoriasMouseClicked
         // TODO add your handling code here:
         control.mostrarMenuTutores();
+        jLabel1.setVisible(false);
     }//GEN-LAST:event_menuTutoriasMouseClicked
 
     private void menuAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAlumnosMouseClicked
         // TODO add your handling code here:
         control.mostrarMenuAlumnos();
+        jLabel1.setVisible(false);
     }//GEN-LAST:event_menuAlumnosMouseClicked
+
+    private void menuMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMateriasMouseClicked
+        // TODO add your handling code here:
+        control.mostrarMenuMaterias();
+        jLabel1.setVisible(false);
+    }//GEN-LAST:event_menuMateriasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

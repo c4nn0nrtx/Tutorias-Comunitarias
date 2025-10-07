@@ -6,10 +6,13 @@ package com.mycompany.presentaciontutorias;
  */
 
 import Controller.AlumnoController;
+import Controller.MateriaController;
 import Controller.TutorController;
 import DTOs.AlumnoDTO;
+import DTOs.MateriaDTO;
 import DTOs.TutorDTO;
 import Dominio.Alumno;
+import Dominio.Materia;
 import Dominio.Tutor;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +28,10 @@ import view.ModuloTutores.AgregarTutor;
 import view.ModuloTutores.MenuSistema;
 import view.ModuloTutores.MenuTutores;
 import view.ModuloTutores.ResumenTutorActualizado;
+import views.ModuloMateria.ActualizarMateria;
+import views.ModuloMateria.MenuMaterias;
+import views.ModuloMateria.AgregarMateria;
+import views.ModuloMateria.ResumenMateriaActualizada;
 
 /**
  *
@@ -49,19 +56,28 @@ public class Aplicacion {
     private ActualizarAlumno actualizarAlumno;
     private ResumenActualizar resumenActulizar;
     
+    //modulo Materias
+    private MenuMaterias menuMaterias;
+    private AgregarMateria agregarMateria;
+    private ActualizarMateria actualizarMateria;
+    private ResumenMateriaActualizada resumenMateria;
+    
     //Objetos Temporales
     private AlumnoDTO alumnoTemporal;
     private TutorDTO tutorTemporal;
+    private MateriaDTO materiaTemporal;
     //Controllers
     
     private TutorController controlTutores;
     private AlumnoController controlAlumnos;
+    private MateriaController controlMateria;
 
 
     public Aplicacion() {
         menuSistema = new MenuSistema(this);
         controlTutores = new TutorController();
         controlAlumnos = new AlumnoController();
+        controlMateria = new MateriaController();
     }
     //Metodo para probar main
     public void iniciar(){
@@ -82,9 +98,11 @@ public class Aplicacion {
     public List<Tutor> consultarTodos(){
         return controlTutores.obtenerTodos();
     }
-    
-    public List<Alumno> consultarTodosAlumnos(){
+    public List<Alumno> consultarAlumnos(){
         return controlAlumnos.obtenerTodos();
+    }
+    public List<Materia> consultarMaterias(){
+        return controlMateria.obtenerTodos();
     }
     
     
@@ -170,7 +188,59 @@ public class Aplicacion {
         cambiarPantalla(resumenActulizar);
     }
     
+    public void mostrarMenuMaterias(){
+        menuMaterias = new MenuMaterias(this);
+        cambiarPantalla(menuMaterias);
+    }
     
+    public void mostrarAgregarMateria(){
+        agregarMateria = new AgregarMateria(this);
+        cambiarPantalla(agregarMateria);
+    }
+    public void mostrarActualizarMateria(){
+        actualizarMateria = new ActualizarMateria(this);
+        cambiarPantalla(actualizarMateria);
+    }
+    public void mostrarResumenMateria(){
+        resumenMateria = new ResumenMateriaActualizada(this);
+        cambiarPantalla(resumenMateria);
+    }
+    
+    //modulo Materia
+     public Boolean confirmarMateria(MateriaDTO materia){
+        if(controlMateria.agregarMateria(materia.getNombre(),materia.getNivelAcademico(), materia.getDescripcion())){
+            mostrarMenuMaterias();
+            return true;
+        }
+        mostrarMenuMaterias();
+        return false; 
+    }
+     
+     public Boolean actualizarMateria(MateriaDTO materia){
+         if(controlMateria.actualizarMateria(materia.getId(), materia.getNombre(), materia.getNivelAcademico(), materia.getDescripcion())){
+            mostrarMenuMaterias();
+            return true;
+        }
+        mostrarMenuMaterias();
+        return false; 
+     }
+    
+     public boolean eliminarMateria(int id){
+        if(controlMateria.eliminarMateria(id)){
+            mostrarMenuMaterias();
+            return true;
+        }
+        mostrarMenuMaterias();
+        return false;  
+    }
+     
+    public void setMateria(MateriaDTO materia){
+        this.materiaTemporal = materia;
+    }
+    public MateriaDTO getMateria(){
+        return materiaTemporal;
+    }
+     
     public void setAlumno(AlumnoDTO alumno){
         this.alumnoTemporal = alumno;
     }
